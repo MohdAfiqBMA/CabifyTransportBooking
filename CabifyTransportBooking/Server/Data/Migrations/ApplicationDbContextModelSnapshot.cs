@@ -38,12 +38,6 @@ namespace CabifyTransportBooking.Server.Data.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -97,7 +91,7 @@ namespace CabifyTransportBooking.Server.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AdminID")
+                    b.Property<int>("AdminID")
                         .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
@@ -118,10 +112,10 @@ namespace CabifyTransportBooking.Server.Data.Migrations
                     b.Property<string>("Destination")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("DriverID")
+                    b.Property<int>("DriverID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("PassengerID")
+                    b.Property<int>("PassengerID")
                         .HasColumnType("int");
 
                     b.Property<string>("PaymentMethod")
@@ -130,16 +124,19 @@ namespace CabifyTransportBooking.Server.Data.Migrations
                     b.Property<string>("PickUpLocation")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("StaffID")
+                        .HasColumnType("int");
+
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ID");
 
-                    b.HasIndex("AdminID");
-
                     b.HasIndex("DriverID");
 
                     b.HasIndex("PassengerID");
+
+                    b.HasIndex("StaffID");
 
                     b.ToTable("Bookings");
                 });
@@ -594,23 +591,27 @@ namespace CabifyTransportBooking.Server.Data.Migrations
 
             modelBuilder.Entity("CabifyTransportBooking.Shared.Domain.Booking", b =>
                 {
-                    b.HasOne("CabifyTransportBooking.Shared.Domain.Staff", "Admin")
-                        .WithMany()
-                        .HasForeignKey("AdminID");
-
                     b.HasOne("CabifyTransportBooking.Shared.Domain.Staff", "Driver")
                         .WithMany()
-                        .HasForeignKey("DriverID");
+                        .HasForeignKey("DriverID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("CabifyTransportBooking.Shared.Domain.Passenger", "Passenger")
                         .WithMany()
-                        .HasForeignKey("PassengerID");
+                        .HasForeignKey("PassengerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Admin");
+                    b.HasOne("CabifyTransportBooking.Shared.Domain.Staff", "Staff")
+                        .WithMany()
+                        .HasForeignKey("StaffID");
 
                     b.Navigation("Driver");
 
                     b.Navigation("Passenger");
+
+                    b.Navigation("Staff");
                 });
 
             modelBuilder.Entity("CabifyTransportBooking.Shared.Domain.Staff", b =>
