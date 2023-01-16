@@ -9,11 +9,15 @@ namespace CabifyTransportBooking.Shared.Domain
         public DateTime DateOut { get; set; }
         public DateTime DateIn { get; set; }
         
-        public int AdminId { get; set; }
+        public int AdminID { get; set; }
         public virtual Admin Admin { get; set; }
         
-        public int PassengerId { get; set; }
+        public int PassengerID { get; set; }
         public virtual Passenger Passenger { get; set; }
+
+        public int DriverID { get; set; }
+
+        public virtual Driver Driver { get; set; }
 
         public string PickUpLocation { get; set; }
 
