@@ -13,5 +13,7 @@ namespace CabifyTransportBooking.Shared.Domain
         public string LicensePlateNumber { get; set; }
         public int DriverID { get; set; }
         public virtual Staff Staff { get; set; }
+        public int CategoryID { get; set; }
+        public virtual VehicleCategory VehicleCategory { get; set; }
     }
 }

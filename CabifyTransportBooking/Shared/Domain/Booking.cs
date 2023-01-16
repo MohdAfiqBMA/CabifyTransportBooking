@@ -11,6 +11,7 @@ namespace CabifyTransportBooking.Shared.Domain
         
         public int AdminID { get; set; }
         public virtual Staff Admin { get; set; }
+
         
         public int PassengerID { get; set; }
         public virtual Passenger Passenger { get; set; }
@@ -24,7 +25,6 @@ namespace CabifyTransportBooking.Shared.Domain
         public string Destination { get; set; }
 
         public string PaymentMethod { get; set; }
-
 
     }
 }
