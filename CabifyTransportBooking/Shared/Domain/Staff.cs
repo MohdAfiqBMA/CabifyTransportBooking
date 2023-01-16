@@ -14,6 +14,7 @@ namespace CabifyTransportBooking.Shared.Domain
         public string StaffPassword { get; set; }
         public int StaffRating { get; set; }
         public string StaffGender { get; set; }
-
+        public int RoleID { get; set; }
+        public virtual StaffRole StaffRole { get; set; }
     }
 }
