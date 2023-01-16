@@ -1,4 +1,9 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+
+@inject NavigationManager Navigation
+@inject SignOutSessionStateManager SignOutManager
+<div class="top-row pl-4 navbar navbar-dark">
     <a class="navbar-brand" href="">Cabify</a>
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
@@ -7,7 +12,6 @@
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <ul class="nav flex-column">
-        @*copy authorizeView from loginDisplay so that the css view of register/login is same as the rest*@
         <AuthorizeView>
             <Authorized>
                 <li class="nav-item px-3">
@@ -16,19 +20,22 @@
                     </NavLink>
                 </li>
                 <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="authentication/logout" Match="NavLinkMatch.All">
+                    @*<NavLink class="nav-link" href="authentication/logout" Match="NavLinkMatch.All">
+                            <span class="oi oi-account-logout" aria-hidden="true"></span> Log out
+                        </NavLink>*@
+                    <NavLink class="nav-link" href="#" @onclick="BeginSignOut" Match="NavLinkMatch.All">
                         <span class="oi oi-account-logout" aria-hidden="true"></span> Log out
                     </NavLink>
                 </li>
             </Authorized>
             <NotAuthorized>
                 <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="authentication/profile" Match="NavLinkMatch.All">
+                    <NavLink class="nav-link" href="authentication/register" Match="NavLinkMatch.All">
                         <span class="oi oi-person" aria-hidden="true"></span> Register
                     </NavLink>
                 </li>
                 <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="authentication/logout" Match="NavLinkMatch.All">
+                    <NavLink class="nav-link" href="authentication/login" Match="NavLinkMatch.All">
                         <span class="oi oi-account-login" aria-hidden="true"></span> Log in
                     </NavLink>
                 </li>
@@ -40,28 +47,28 @@
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="oi oi-plus" aria-hidden="true"></span> Counter
+            <NavLink class="nav-link" href="bookings">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Bookings
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="booking">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Booking
+            <NavLink class="nav-link" href="passengers">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Passengers
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="passenger">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Passenger
+            <NavLink class="nav-link" href="staffs">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Staffs
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="staff">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Staff
+            <NavLink class="nav-link" href="vehicles">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Vehicles
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="vehicle">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Vehicle
+            <NavLink class="nav-link" href="vehicles">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Vehicles
             </NavLink>
         </li>
     </ul>
@@ -75,5 +82,10 @@
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+    private async Task BeginSignOut(MouseEventArgs args)
+    {
+        await SignOutManager.SetSignOutState();
+        Navigation.NavigateTo("authentication/logout");
     }
 }

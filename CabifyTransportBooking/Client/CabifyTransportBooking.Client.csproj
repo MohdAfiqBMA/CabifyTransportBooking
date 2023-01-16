@@ -6,6 +6,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\Bookings\**" />
+    <Compile Remove="Pages\Passengers\**" />
+    <Compile Remove="Pages\Staffs\**" />
+    <Compile Remove="Pages\VehicleCategory\**" />
+    <Compile Remove="Pages\Vehicles\**" />
+    <Content Remove="Pages\Bookings\**" />
+    <Content Remove="Pages\Passengers\**" />
+    <Content Remove="Pages\Staffs\**" />
+    <Content Remove="Pages\VehicleCategory\**" />
+    <Content Remove="Pages\Vehicles\**" />
+    <EmbeddedResource Remove="Pages\Bookings\**" />
+    <EmbeddedResource Remove="Pages\Passengers\**" />
+    <EmbeddedResource Remove="Pages\Staffs\**" />
+    <EmbeddedResource Remove="Pages\VehicleCategory\**" />
+    <EmbeddedResource Remove="Pages\Vehicles\**" />
+    <None Remove="Pages\Bookings\**" />
+    <None Remove="Pages\Passengers\**" />
+    <None Remove="Pages\Staffs\**" />
+    <None Remove="Pages\VehicleCategory\**" />
+    <None Remove="Pages\Vehicles\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.17" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.17" PrivateAssets="all" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="5.0.17" />
@@ -22,11 +45,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Bookings\" />
-    <Folder Include="Pages\VehicleCategory\" />
-    <Folder Include="Pages\Staffs\" />
-    <Folder Include="Pages\Vehicles\" />
-    <Folder Include="Pages\Passengers\" />
     <Folder Include="wwwroot\fonts\" />
   </ItemGroup>
 
