@@ -22,6 +22,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Pages\Bookings\" />
+    <Folder Include="Pages\VehicleCategory\" />
+    <Folder Include="Pages\Staffs\" />
+    <Folder Include="Pages\Vehicles\" />
+    <Folder Include="Pages\Passengers\" />
     <Folder Include="wwwroot\fonts\" />
   </ItemGroup>
 
