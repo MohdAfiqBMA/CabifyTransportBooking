@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CabifyTransportBooking.Server.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230116093426_AddedNameToUser")]
-    partial class AddedNameToUser
+    [Migration("20230117084426_AddApplicationTables")]
+    partial class AddApplicationTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -94,12 +94,15 @@ namespace CabifyTransportBooking.Server.Data.Migrations
 
             modelBuilder.Entity("CabifyTransportBooking.Shared.Domain.Booking", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int?>("AdminID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CategoryID")
                         .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
@@ -135,9 +138,11 @@ namespace CabifyTransportBooking.Server.Data.Migrations
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("AdminID");
+
+                    b.HasIndex("CategoryID");
 
                     b.HasIndex("DriverID");
 
@@ -148,7 +153,7 @@ namespace CabifyTransportBooking.Server.Data.Migrations
 
             modelBuilder.Entity("CabifyTransportBooking.Shared.Domain.Passenger", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -177,7 +182,7 @@ namespace CabifyTransportBooking.Server.Data.Migrations
                     b.Property<string>("PassengerPassword")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PassengerPhoneNumber")
+                    b.Property<string>("PassengerPhone")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PassengerRating")
@@ -186,14 +191,14 @@ namespace CabifyTransportBooking.Server.Data.Migrations
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("Passengers");
                 });
 
             modelBuilder.Entity("CabifyTransportBooking.Shared.Domain.Staff", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -228,22 +233,22 @@ namespace CabifyTransportBooking.Server.Data.Migrations
                     b.Property<int>("StaffRating")
                         .HasColumnType("int");
 
-                    b.Property<int?>("StaffRoleID")
+                    b.Property<int?>("StaffRoleId")
                         .HasColumnType("int");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("StaffRoleID");
+                    b.HasIndex("StaffRoleId");
 
                     b.ToTable("Staffs");
                 });
 
             modelBuilder.Entity("CabifyTransportBooking.Shared.Domain.StaffRole", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -269,14 +274,14 @@ namespace CabifyTransportBooking.Server.Data.Migrations
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("StaffRoles");
                 });
 
             modelBuilder.Entity("CabifyTransportBooking.Shared.Domain.Vehicle", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -299,13 +304,13 @@ namespace CabifyTransportBooking.Server.Data.Migrations
                     b.Property<string>("LicensePlateNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("StaffID")
+                    b.Property<int?>("StaffId")
                         .HasColumnType("int");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("VehicleCategoryID")
+                    b.Property<int?>("VehicleCategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("VehicleMake")
@@ -314,18 +319,18 @@ namespace CabifyTransportBooking.Server.Data.Migrations
                     b.Property<string>("VehicleModel")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("StaffID");
+                    b.HasIndex("StaffId");
 
-                    b.HasIndex("VehicleCategoryID");
+                    b.HasIndex("VehicleCategoryId");
 
                     b.ToTable("Vehicles");
                 });
 
             modelBuilder.Entity("CabifyTransportBooking.Shared.Domain.VehicleCategory", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -351,7 +356,7 @@ namespace CabifyTransportBooking.Server.Data.Migrations
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.ToTable("VehicleCategorys");
                 });
@@ -600,6 +605,10 @@ namespace CabifyTransportBooking.Server.Data.Migrations
                         .WithMany()
                         .HasForeignKey("AdminID");
 
+                    b.HasOne("CabifyTransportBooking.Shared.Domain.VehicleCategory", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryID");
+
                     b.HasOne("CabifyTransportBooking.Shared.Domain.Staff", "Driver")
                         .WithMany()
                         .HasForeignKey("DriverID");
@@ -610,6 +619,8 @@ namespace CabifyTransportBooking.Server.Data.Migrations
 
                     b.Navigation("Admin");
 
+                    b.Navigation("Category");
+
                     b.Navigation("Driver");
 
                     b.Navigation("Passenger");
@@ -619,7 +630,7 @@ namespace CabifyTransportBooking.Server.Data.Migrations
                 {
                     b.HasOne("CabifyTransportBooking.Shared.Domain.StaffRole", "StaffRole")
                         .WithMany()
-                        .HasForeignKey("StaffRoleID");
+                        .HasForeignKey("StaffRoleId");
 
                     b.Navigation("StaffRole");
                 });
@@ -628,11 +639,11 @@ namespace CabifyTransportBooking.Server.Data.Migrations
                 {
                     b.HasOne("CabifyTransportBooking.Shared.Domain.Staff", "Staff")
                         .WithMany()
-                        .HasForeignKey("StaffID");
+                        .HasForeignKey("StaffId");
 
                     b.HasOne("CabifyTransportBooking.Shared.Domain.VehicleCategory", "VehicleCategory")
                         .WithMany()
-                        .HasForeignKey("VehicleCategoryID");
+                        .HasForeignKey("VehicleCategoryId");
 
                     b.Navigation("Staff");
 

@@ -90,6 +90,275 @@ namespace CabifyTransportBooking.Server.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("CabifyTransportBooking.Shared.Domain.Booking", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("AdminID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CategoryID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateIn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOut")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Destination")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("DriverID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PassengerID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PaymentMethod")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PickUpLocation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdminID");
+
+                    b.HasIndex("CategoryID");
+
+                    b.HasIndex("DriverID");
+
+                    b.HasIndex("PassengerID");
+
+                    b.ToTable("Bookings");
+                });
+
+            modelBuilder.Entity("CabifyTransportBooking.Shared.Domain.Passenger", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PassengerAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PassengerEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PassengerGender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PassengerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PassengerPassword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PassengerPhone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PassengerRating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Passengers");
+                });
+
+            modelBuilder.Entity("CabifyTransportBooking.Shared.Domain.Staff", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RoleID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StaffEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StaffGender")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StaffName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StaffPassword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StaffPhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StaffRating")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StaffRoleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StaffRoleId");
+
+                    b.ToTable("Staffs");
+                });
+
+            modelBuilder.Entity("CabifyTransportBooking.Shared.Domain.StaffRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("RoleDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StaffRoles");
+                });
+
+            modelBuilder.Entity("CabifyTransportBooking.Shared.Domain.Vehicle", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CategoryID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DriverID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LicensePlateNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("StaffId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("VehicleCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("VehicleMake")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VehicleModel")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StaffId");
+
+                    b.HasIndex("VehicleCategoryId");
+
+                    b.ToTable("Vehicles");
+                });
+
+            modelBuilder.Entity("CabifyTransportBooking.Shared.Domain.VehicleCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Capacity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VehicleCategorys");
+                });
+
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>
                 {
                     b.Property<string>("UserCode")
@@ -326,6 +595,57 @@ namespace CabifyTransportBooking.Server.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("CabifyTransportBooking.Shared.Domain.Booking", b =>
+                {
+                    b.HasOne("CabifyTransportBooking.Shared.Domain.Staff", "Admin")
+                        .WithMany()
+                        .HasForeignKey("AdminID");
+
+                    b.HasOne("CabifyTransportBooking.Shared.Domain.VehicleCategory", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryID");
+
+                    b.HasOne("CabifyTransportBooking.Shared.Domain.Staff", "Driver")
+                        .WithMany()
+                        .HasForeignKey("DriverID");
+
+                    b.HasOne("CabifyTransportBooking.Shared.Domain.Passenger", "Passenger")
+                        .WithMany()
+                        .HasForeignKey("PassengerID");
+
+                    b.Navigation("Admin");
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Driver");
+
+                    b.Navigation("Passenger");
+                });
+
+            modelBuilder.Entity("CabifyTransportBooking.Shared.Domain.Staff", b =>
+                {
+                    b.HasOne("CabifyTransportBooking.Shared.Domain.StaffRole", "StaffRole")
+                        .WithMany()
+                        .HasForeignKey("StaffRoleId");
+
+                    b.Navigation("StaffRole");
+                });
+
+            modelBuilder.Entity("CabifyTransportBooking.Shared.Domain.Vehicle", b =>
+                {
+                    b.HasOne("CabifyTransportBooking.Shared.Domain.Staff", "Staff")
+                        .WithMany()
+                        .HasForeignKey("StaffId");
+
+                    b.HasOne("CabifyTransportBooking.Shared.Domain.VehicleCategory", "VehicleCategory")
+                        .WithMany()
+                        .HasForeignKey("VehicleCategoryId");
+
+                    b.Navigation("Staff");
+
+                    b.Navigation("VehicleCategory");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
