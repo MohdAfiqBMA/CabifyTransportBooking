@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Configurations\Entities\" />
+    <Folder Include="Configurations\Entities\" />
   </ItemGroup>
 
 </Project>
