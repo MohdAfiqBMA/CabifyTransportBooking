@@ -24,5 +24,6 @@ namespace CabifyTransportBooking.Server.Data
         public DbSet<Passenger> Passengers { get; set; }
         public DbSet<VehicleCategory> VehicleCategorys { get; set; }
         public DbSet<StaffRole> StaffRoles { get; set; }
+
     }
 }
