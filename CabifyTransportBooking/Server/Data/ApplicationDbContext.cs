@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CabifyTransportBooking.Shared.Domain;
 
 namespace CabifyTransportBooking.Server.Data
 {
@@ -17,5 +18,11 @@ namespace CabifyTransportBooking.Server.Data
             IOptions<OperationalStoreOptions> operationalStoreOptions) : base(options, operationalStoreOptions)
         {
         }
+        public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Staff> Staffs { get; set; }
+        public DbSet<Passenger> Passengers { get; set; }
+        public DbSet<VehicleCategory> VehicleCategorys { get; set; }
+        public DbSet<StaffRole> StaffRoles { get; set; }
     }
 }
