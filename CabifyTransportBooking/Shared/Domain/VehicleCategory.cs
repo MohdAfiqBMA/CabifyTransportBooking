@@ -10,7 +10,7 @@ namespace CabifyTransportBooking.Shared.Domain
     {
         public string Name { get; set; }
         public int Capacity { get; set; }
-        public float Price { get; set; }
+        public double Price { get; set; }
 
     }
 }
