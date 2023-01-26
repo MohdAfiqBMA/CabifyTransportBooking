@@ -1,4 +1,4 @@
-﻿using CabifyTransportBooking.Server.Models;
+using CabifyTransportBooking.Server.Models;
 using IdentityServer4.EntityFramework.Options;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +29,6 @@ namespace CabifyTransportBooking.Server.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
             builder.ApplyConfiguration(new PassengerSeedConfiguration());
             builder.ApplyConfiguration(new StaffSeedConfiguration());
         }

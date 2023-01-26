@@ -1,5 +1,7 @@
 using CabifyTransportBooking.Server.Data;
+using CabifyTransportBooking.Server.IRepository;
 using CabifyTransportBooking.Server.Models;
+using CarRentalManagement.Server.Repository;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,7 +42,7 @@ namespace CabifyTransportBooking.Server
 
             services.AddAuthentication()
                 .AddIdentityServerJwt();
-
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
