@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CabifyTransportBooking.Shared.Domain;
+using CabifyTransportBooking.Server.Configurations.Entities;
 
 namespace CabifyTransportBooking.Server.Data
 {
@@ -25,5 +26,12 @@ namespace CabifyTransportBooking.Server.Data
         public DbSet<VehicleCategory> VehicleCategorys { get; set; }
         public DbSet<StaffRole> StaffRoles { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.ApplyConfiguration(new PassengerSeedConfiguration());
+            builder.ApplyConfiguration(new StaffSeedConfiguration());
+        }
     }
 }
