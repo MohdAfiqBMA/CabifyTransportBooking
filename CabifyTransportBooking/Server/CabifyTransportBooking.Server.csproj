@@ -16,7 +16,6 @@
     <Compile Include="Configurations\Entities\PassengerSeedConfiguration.cs" />
     <Compile Include="Configurations\Entities\StaffRoleSeedConfiguration.cs" />
     <Compile Include="Configurations\Entities\StaffSeedConfiguration.cs" />
-    <Compile Include="Configurations\Entities\VehicleSeedConfiguration.cs" />
     <Compile Include="Configurations\Entities\VehicleCategorySeedConfiguration.cs" />
   </ItemGroup>
 
@@ -37,6 +36,10 @@
     <PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.17" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

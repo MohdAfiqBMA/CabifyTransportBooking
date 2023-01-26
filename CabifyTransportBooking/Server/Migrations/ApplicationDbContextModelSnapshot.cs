@@ -198,8 +198,8 @@ namespace CabifyTransportBooking.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 26, 18, 14, 2, 631, DateTimeKind.Local).AddTicks(8996),
-                            DateUpdated = new DateTime(2023, 1, 26, 18, 14, 2, 632, DateTimeKind.Local).AddTicks(6271),
+                            DateCreated = new DateTime(2023, 1, 26, 23, 44, 25, 94, DateTimeKind.Local).AddTicks(6129),
+                            DateUpdated = new DateTime(2023, 1, 26, 23, 44, 25, 95, DateTimeKind.Local).AddTicks(4360),
                             PassengerAddress = "Pasir Ris 51",
                             PassengerEmail = "benyeo@gmail.com",
                             PassengerGender = "Male",
@@ -265,13 +265,13 @@ namespace CabifyTransportBooking.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 26, 18, 14, 2, 634, DateTimeKind.Local).AddTicks(1460),
-                            DateUpdated = new DateTime(2023, 1, 26, 18, 14, 2, 634, DateTimeKind.Local).AddTicks(1608),
+                            DateCreated = new DateTime(2023, 1, 26, 23, 44, 25, 97, DateTimeKind.Local).AddTicks(5128),
+                            DateUpdated = new DateTime(2023, 1, 26, 23, 44, 25, 97, DateTimeKind.Local).AddTicks(5134),
                             RoleID = 2,
                             StaffEmail = "john123@gmail.com",
                             StaffGender = "Male",
                             StaffName = "John",
-                            StaffPassword = "password",
+                            StaffPassword = "john12345",
                             StaffPhoneNumber = "98765432",
                             StaffRating = 4,
                             UpdatedBy = "System"
@@ -315,8 +315,8 @@ namespace CabifyTransportBooking.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 26, 18, 14, 2, 634, DateTimeKind.Local).AddTicks(5021),
-                            DateUpdated = new DateTime(2023, 1, 26, 18, 14, 2, 634, DateTimeKind.Local).AddTicks(5026),
+                            DateCreated = new DateTime(2023, 1, 26, 23, 44, 25, 96, DateTimeKind.Local).AddTicks(7380),
+                            DateUpdated = new DateTime(2023, 1, 26, 23, 44, 25, 96, DateTimeKind.Local).AddTicks(7388),
                             RoleDescription = "Support employees by assigning tasks",
                             RoleName = "Admin",
                             RoleType = "Admin",
@@ -326,8 +326,8 @@ namespace CabifyTransportBooking.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 26, 18, 14, 2, 634, DateTimeKind.Local).AddTicks(5029),
-                            DateUpdated = new DateTime(2023, 1, 26, 18, 14, 2, 634, DateTimeKind.Local).AddTicks(5030),
+                            DateCreated = new DateTime(2023, 1, 26, 23, 44, 25, 96, DateTimeKind.Local).AddTicks(7392),
+                            DateUpdated = new DateTime(2023, 1, 26, 23, 44, 25, 96, DateTimeKind.Local).AddTicks(7393),
                             RoleDescription = "Drive passengers to the intended destination",
                             RoleName = "Driver",
                             RoleType = "Driver",
@@ -354,7 +354,7 @@ namespace CabifyTransportBooking.Server.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DriverID")
+                    b.Property<int?>("DriverID")
                         .HasColumnType("int");
 
                     b.Property<string>("LicensePlateNumber")
@@ -382,21 +382,6 @@ namespace CabifyTransportBooking.Server.Migrations
                     b.HasIndex("VehicleCategoryId");
 
                     b.ToTable("Vehicles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoryID = 1,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 26, 18, 14, 2, 634, DateTimeKind.Local).AddTicks(8137),
-                            DateUpdated = new DateTime(2023, 1, 26, 18, 14, 2, 634, DateTimeKind.Local).AddTicks(8142),
-                            DriverID = 1,
-                            LicensePlateNumber = "SMU142N",
-                            UpdatedBy = "System",
-                            VehicleMake = "BMW",
-                            VehicleModel = "X1"
-                        });
                 });
 
             modelBuilder.Entity("CabifyTransportBooking.Shared.Domain.VehicleCategory", b =>
@@ -437,8 +422,8 @@ namespace CabifyTransportBooking.Server.Migrations
                             Id = 1,
                             Capacity = 4,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 26, 18, 14, 2, 635, DateTimeKind.Local).AddTicks(1223),
-                            DateUpdated = new DateTime(2023, 1, 26, 18, 14, 2, 635, DateTimeKind.Local).AddTicks(1228),
+                            DateCreated = new DateTime(2023, 1, 26, 23, 44, 25, 97, DateTimeKind.Local).AddTicks(797),
+                            DateUpdated = new DateTime(2023, 1, 26, 23, 44, 25, 97, DateTimeKind.Local).AddTicks(802),
                             Name = "Cabify Standard",
                             Price = 12f,
                             UpdatedBy = "System"
