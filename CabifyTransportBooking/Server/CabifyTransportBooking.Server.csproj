@@ -14,8 +14,10 @@
 
   <ItemGroup>
     <Compile Include="Configurations\Entities\PassengerSeedConfiguration.cs" />
+    <Compile Include="Configurations\Entities\StaffRoleSeedConfiguration.cs" />
     <Compile Include="Configurations\Entities\StaffSeedConfiguration.cs" />
     <Compile Include="Configurations\Entities\VehicleSeedConfiguration.cs" />
+    <Compile Include="Configurations\Entities\VehicleCategorySeedConfiguration.cs" />
   </ItemGroup>
 
   <ItemGroup>

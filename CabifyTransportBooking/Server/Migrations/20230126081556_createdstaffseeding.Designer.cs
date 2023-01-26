@@ -4,14 +4,16 @@ using CabifyTransportBooking.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CabifyTransportBooking.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230126081556_createdstaffseeding")]
+    partial class createdstaffseeding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -197,17 +199,15 @@ namespace CabifyTransportBooking.Server.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 26, 18, 14, 2, 631, DateTimeKind.Local).AddTicks(8996),
-                            DateUpdated = new DateTime(2023, 1, 26, 18, 14, 2, 632, DateTimeKind.Local).AddTicks(6271),
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PassengerAddress = "Pasir Ris 51",
                             PassengerEmail = "benyeo@gmail.com",
                             PassengerGender = "Male",
                             PassengerName = "Ben Yeo",
                             PassengerPassword = "Password",
                             PassengerPhone = "98712345",
-                            PassengerRating = 3,
-                            UpdatedBy = "System"
+                            PassengerRating = 3
                         });
                 });
 
@@ -264,17 +264,15 @@ namespace CabifyTransportBooking.Server.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 26, 18, 14, 2, 634, DateTimeKind.Local).AddTicks(1460),
-                            DateUpdated = new DateTime(2023, 1, 26, 18, 14, 2, 634, DateTimeKind.Local).AddTicks(1608),
-                            RoleID = 2,
+                            DateCreated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RoleID = 0,
                             StaffEmail = "john123@gmail.com",
                             StaffGender = "Male",
                             StaffName = "John",
                             StaffPassword = "password",
                             StaffPhoneNumber = "98765432",
-                            StaffRating = 4,
-                            UpdatedBy = "System"
+                            StaffRating = 4
                         });
                 });
 
@@ -309,30 +307,6 @@ namespace CabifyTransportBooking.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("StaffRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 26, 18, 14, 2, 634, DateTimeKind.Local).AddTicks(5021),
-                            DateUpdated = new DateTime(2023, 1, 26, 18, 14, 2, 634, DateTimeKind.Local).AddTicks(5026),
-                            RoleDescription = "Support employees by assigning tasks",
-                            RoleName = "Admin",
-                            RoleType = "Admin",
-                            UpdatedBy = "System"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 26, 18, 14, 2, 634, DateTimeKind.Local).AddTicks(5029),
-                            DateUpdated = new DateTime(2023, 1, 26, 18, 14, 2, 634, DateTimeKind.Local).AddTicks(5030),
-                            RoleDescription = "Drive passengers to the intended destination",
-                            RoleName = "Driver",
-                            RoleType = "Driver",
-                            UpdatedBy = "System"
-                        });
                 });
 
             modelBuilder.Entity("CabifyTransportBooking.Shared.Domain.Vehicle", b =>
@@ -382,21 +356,6 @@ namespace CabifyTransportBooking.Server.Migrations
                     b.HasIndex("VehicleCategoryId");
 
                     b.ToTable("Vehicles");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoryID = 1,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 26, 18, 14, 2, 634, DateTimeKind.Local).AddTicks(8137),
-                            DateUpdated = new DateTime(2023, 1, 26, 18, 14, 2, 634, DateTimeKind.Local).AddTicks(8142),
-                            DriverID = 1,
-                            LicensePlateNumber = "SMU142N",
-                            UpdatedBy = "System",
-                            VehicleMake = "BMW",
-                            VehicleModel = "X1"
-                        });
                 });
 
             modelBuilder.Entity("CabifyTransportBooking.Shared.Domain.VehicleCategory", b =>
@@ -430,19 +389,6 @@ namespace CabifyTransportBooking.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("VehicleCategorys");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Capacity = 4,
-                            CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 26, 18, 14, 2, 635, DateTimeKind.Local).AddTicks(1223),
-                            DateUpdated = new DateTime(2023, 1, 26, 18, 14, 2, 635, DateTimeKind.Local).AddTicks(1228),
-                            Name = "Cabify Standard",
-                            Price = 12f,
-                            UpdatedBy = "System"
-                        });
                 });
 
             modelBuilder.Entity("IdentityServer4.EntityFramework.Entities.DeviceFlowCodes", b =>

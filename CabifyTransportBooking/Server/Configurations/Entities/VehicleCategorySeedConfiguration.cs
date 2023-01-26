@@ -6,24 +6,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-
 namespace CabifyTransportBooking.Server.Configurations.Entities
 {
-    public class PassengerSeedConfiguration : IEntityTypeConfiguration<Passenger>
+    public class VehicleCategorySeedConfiguration : IEntityTypeConfiguration<VehicleCategory>
     {
-        public void Configure(EntityTypeBuilder<Passenger> builder)
+        public void Configure(EntityTypeBuilder<VehicleCategory> builder)
         {
             builder.HasData(
-                new Passenger
+                new VehicleCategory
                 {
                     Id = 1,
-                    PassengerGender = "Male",
-                    PassengerName = "Ben Yeo",
-                    PassengerPhone = "98712345",
-                    PassengerEmail = "benyeo@gmail.com",
-                    PassengerPassword = "Password",
-                    PassengerRating = 3,
-                    PassengerAddress = "Pasir Ris 51",
+                    Capacity = 4,
+                    Name = "Cabify Standard",
+                    Price = 12.00F,
                     CreatedBy = "System",
                     UpdatedBy = "System",
                     DateCreated = DateTime.Now,

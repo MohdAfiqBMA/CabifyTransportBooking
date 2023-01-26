@@ -31,6 +31,10 @@ namespace CabifyTransportBooking.Server.Data
             base.OnModelCreating(builder);
             builder.ApplyConfiguration(new PassengerSeedConfiguration());
             builder.ApplyConfiguration(new StaffSeedConfiguration());
+            builder.ApplyConfiguration(new StaffRoleSeedConfiguration());
+            builder.ApplyConfiguration(new VehicleSeedConfiguration());
+            builder.ApplyConfiguration(new VehicleCategorySeedConfiguration());
+
         }
     }
 }
