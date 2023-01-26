@@ -1,0 +1,64 @@
+﻿@page "/passenger/"
+@inject HttpClient _client
+@inject IJSRuntime js
+@attribute [Authorize]
+
+@if (Passengers == null)
+{
+    <div class="alert alert-info">Loading Passenger...</div>
+}
+else
+{
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var passenger in Passengers)
+            {
+                <tr>
+                    <td>@passenger.PassengerName</td>
+                    <td>
+                        <a href="/makes/view/@passenger.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+                        <a href="/makes/edit/@passenger.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(passenger.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+
+@code {
+
+    private List<Passenger> Passengers;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Passengers = await _client.GetFromJsonAsync<List<Passenger>>("api/passengers");
+
+    }
+
+    async Task Delete(int passengerID)
+    {
+        var passenger = Passengers.First(q => q.Id == passengerID);
+        var confrim = await js.InvokeAsync<bool>("comfirm", $"Do you wat to delete {passenger.PassengerName}?");
+        if (confrim)
+        {
+            await _client.DeleteAsync($"api/passengers/{passengerID}");
+            await OnInitializedAsync();
+        }
+    }
+
+}
