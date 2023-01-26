@@ -1,8 +1,10 @@
-﻿@page "/passenger/"
+﻿@page "/passengers"
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
 
+<h3 class="card-title">Passenger</h3>
+<br />
 @if (Passengers == null)
 {
     <div class="alert alert-info">Loading Passenger...</div>
@@ -12,27 +14,41 @@ else
     <table class="table table-responsive">
         <thead>
             <tr>
+                <th>Id</th>
+                <th>Gender</th>
                 <th>Name</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Rating</th>
+                <th>Address</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var passenger in Passengers)
             {
-                <tr>
-                    <td>@passenger.PassengerName</td>
-                    <td>
-                        <a href="/makes/view/@passenger.Id" class="btn btn-primary">
-                            <span class="oi oi-book"></span>
-                        </a>
-                        <a href="/makes/edit/@passenger.Id" class="btn btn-warning">
-                            <span class="oi oi-pencil"></span>
-                        </a>
-                        <button class="btn btn-danger" @onclick="@(()=>Delete(passenger.Id))">
-                            <span class="oi oi-delete"></span>
-                        </button>
-                    </td>
-                </tr>
+            <tr>
+                <td>@passenger.Id</td>
+                <td>@passenger.PassengerGender</td>
+                <td>@passenger.PassengerName</td>
+                <td>@passenger.PassengerPhone</td>
+                <td>@passenger.PassengerEmail</td>
+                <td>@passenger.PassengerPassword</td>
+                <td>@passenger.PassengerRating</td>
+                <td>@passenger.PassengerAddress</td>
+                <td>
+                    <a href="/makes/view/@passenger.Id" class="btn btn-primary">
+                        <span class="oi oi-book"></span>
+                    </a>
+                    <a href="/makes/edit/@passenger.Id" class="btn btn-warning">
+                        <span class="oi oi-pencil"></span>
+                    </a>
+                    <button class="btn btn-danger" @onclick="@(()=>Delete(passenger.Id))">
+                        <span class="oi oi-delete"></span>
+                    </button>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
@@ -46,17 +62,17 @@ else
 
     protected async override Task OnInitializedAsync()
     {
-        Passengers = await _client.GetFromJsonAsync<List<Passenger>>("api/passengers");
+        Passengers = await _client.GetFromJsonAsync<List<Passenger>>($"{Endpoints.PassengersEndpoint}");
 
     }
 
     async Task Delete(int passengerID)
     {
         var passenger = Passengers.First(q => q.Id == passengerID);
-        var confrim = await js.InvokeAsync<bool>("comfirm", $"Do you wat to delete {passenger.PassengerName}?");
-        if (confrim)
+        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {passenger.PassengerName}?");
+        if (confirm)
         {
-            await _client.DeleteAsync($"api/passengers/{passengerID}");
+            await _client.DeleteAsync($"{Endpoints.PassengersEndpoint}/{passengerID}");
             await OnInitializedAsync();
         }
     }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CabifyTransportBooking.Server.Data;
 using CabifyTransportBooking.Shared.Domain;
+using CabifyTransportBooking.Server.IRepository;
 
 namespace CabifyTransportBooking.Server.Controllers
 {
@@ -14,32 +15,40 @@ namespace CabifyTransportBooking.Server.Controllers
     [ApiController]
     public class PassengersController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
-
-        public PassengersController(ApplicationDbContext context)
+        //private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
+       // public PassengersController(ApplicationDbContext context)
+        public PassengersController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            //_context = context;
+            _unitOfWork = unitOfWork;
         }
 
         // GET: api/Passengers
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Passenger>>> GetPassengers()
+        //public async Task<ActionResult<IEnumerable<Passenger>>> GetPassengers()
+        public async Task<IActionResult> GetPassengers()
         {
-            return await _context.Passengers.ToListAsync();
+            var passengers = await _unitOfWork.Passengers.GetAll();
+            return Ok(passengers);
+            //return await _context.Passengers.ToListAsync();
         }
 
         // GET: api/Passengers/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Passenger>> GetPassenger(int id)
+        //public async Task<ActionResult<Passenger>> GetPassenger(int id)
+        public async Task<IActionResult> GetPassenger(int id)
         {
-            var passenger = await _context.Passengers.FindAsync(id);
+            //var passenger = await _context.Passengers.FindAsync(id);
+            var passenger = await _unitOfWork.Passengers.Get(q => q.Id == id);
 
             if (passenger == null)
             {
                 return NotFound();
             }
 
-            return passenger;
+            //return passenger;
+            return Ok(passenger);
         }
 
         // PUT: api/Passengers/5
@@ -52,15 +61,18 @@ namespace CabifyTransportBooking.Server.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(passenger).State = EntityState.Modified;
+            //_context.Entry(passenger).State = EntityState.Modified;
+            _unitOfWork.Passengers.Update(passenger);
 
             try
             {
-                await _context.SaveChangesAsync();
+                //await _context.SaveChangesAsync();
+                await _unitOfWork.Save(HttpContext);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PassengerExists(id))
+                //if (!PassengerExists(id))
+                if (!await PassengerExists(id))
                 {
                     return NotFound();
                 }
@@ -78,8 +90,10 @@ namespace CabifyTransportBooking.Server.Controllers
         [HttpPost]
         public async Task<ActionResult<Passenger>> PostPassenger(Passenger passenger)
         {
-            _context.Passengers.Add(passenger);
-            await _context.SaveChangesAsync();
+            //_context.Passengers.Add(passenger);
+            //await _context.SaveChangesAsync();
+            await _unitOfWork.Passengers.Insert(passenger);
+            await _unitOfWork.Save(HttpContext);
 
             return CreatedAtAction("GetPassenger", new { id = passenger.Id }, passenger);
         }
@@ -88,21 +102,27 @@ namespace CabifyTransportBooking.Server.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePassenger(int id)
         {
-            var passenger = await _context.Passengers.FindAsync(id);
+            //var passenger = await _context.Passengers.FindAsync(id);
+            var passenger = await _unitOfWork.Passengers.Get(q => q.Id == id);
             if (passenger == null)
             {
                 return NotFound();
             }
 
-            _context.Passengers.Remove(passenger);
-            await _context.SaveChangesAsync();
+            //_context.Passengers.Remove(passenger);
+            //await _context.SaveChangesAsync();
+            await _unitOfWork.Passengers.Delete(id);
+            await _unitOfWork.Save(HttpContext);
 
             return NoContent();
         }
 
-        private bool PassengerExists(int id)
+        //private bool PassengerExists(int id)
+        private async Task<bool> PassengerExists(int id)
         {
-            return _context.Passengers.Any(e => e.Id == id);
+            //return _context.Passengers.Any(e => e.Id == id);
+            var passenger = await _unitOfWork.Passengers.Get(q => q.Id == id);
+            return passenger != null;
         }
     }
 }

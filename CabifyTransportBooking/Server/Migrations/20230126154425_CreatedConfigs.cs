@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CabifyTransportBooking.Server.Migrations
 {
-    public partial class AddApplicationTables : Migration
+    public partial class CreatedConfigs : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -342,7 +342,7 @@ namespace CabifyTransportBooking.Server.Migrations
                     VehicleMake = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     VehicleModel = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LicensePlateNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DriverID = table.Column<int>(type: "int", nullable: false),
+                    DriverID = table.Column<int>(type: "int", nullable: true),
                     StaffId = table.Column<int>(type: "int", nullable: true),
                     CategoryID = table.Column<int>(type: "int", nullable: false),
                     VehicleCategoryId = table.Column<int>(type: "int", nullable: true),
@@ -367,6 +367,30 @@ namespace CabifyTransportBooking.Server.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Passengers",
+                columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "PassengerAddress", "PassengerEmail", "PassengerGender", "PassengerName", "PassengerPassword", "PassengerPhone", "PassengerRating", "UpdatedBy" },
+                values: new object[] { 1, "System", new DateTime(2023, 1, 26, 23, 44, 25, 94, DateTimeKind.Local).AddTicks(6129), new DateTime(2023, 1, 26, 23, 44, 25, 95, DateTimeKind.Local).AddTicks(4360), "Pasir Ris 51", "benyeo@gmail.com", "Male", "Ben Yeo", "Password", "98712345", 3, "System" });
+
+            migrationBuilder.InsertData(
+                table: "StaffRoles",
+                columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "RoleDescription", "RoleName", "RoleType", "UpdatedBy" },
+                values: new object[,]
+                {
+                    { 1, "System", new DateTime(2023, 1, 26, 23, 44, 25, 96, DateTimeKind.Local).AddTicks(7380), new DateTime(2023, 1, 26, 23, 44, 25, 96, DateTimeKind.Local).AddTicks(7388), "Support employees by assigning tasks", "Admin", "Admin", "System" },
+                    { 2, "System", new DateTime(2023, 1, 26, 23, 44, 25, 96, DateTimeKind.Local).AddTicks(7392), new DateTime(2023, 1, 26, 23, 44, 25, 96, DateTimeKind.Local).AddTicks(7393), "Drive passengers to the intended destination", "Driver", "Driver", "System" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Staffs",
+                columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "RoleID", "StaffEmail", "StaffGender", "StaffName", "StaffPassword", "StaffPhoneNumber", "StaffRating", "StaffRoleId", "UpdatedBy" },
+                values: new object[] { 1, "System", new DateTime(2023, 1, 26, 23, 44, 25, 97, DateTimeKind.Local).AddTicks(5128), new DateTime(2023, 1, 26, 23, 44, 25, 97, DateTimeKind.Local).AddTicks(5134), 2, "john123@gmail.com", "Male", "John", "john12345", "98765432", 4, null, "System" });
+
+            migrationBuilder.InsertData(
+                table: "VehicleCategorys",
+                columns: new[] { "Id", "Capacity", "CreatedBy", "DateCreated", "DateUpdated", "Name", "Price", "UpdatedBy" },
+                values: new object[] { 1, 4, "System", new DateTime(2023, 1, 26, 23, 44, 25, 97, DateTimeKind.Local).AddTicks(797), new DateTime(2023, 1, 26, 23, 44, 25, 97, DateTimeKind.Local).AddTicks(802), "Cabify Standard", 12f, "System" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",

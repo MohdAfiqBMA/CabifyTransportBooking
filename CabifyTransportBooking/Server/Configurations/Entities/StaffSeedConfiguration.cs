@@ -16,11 +16,11 @@ namespace CabifyTransportBooking.Server.Configurations.Entities
                 new Staff
                 {
                     Id = 1,
+                    StaffName="John",
                     StaffGender = "Male",
-                    StaffName = "John",
-                    StaffPhoneNumber = "98765432",
                     StaffEmail = "john123@gmail.com",
-                    StaffPassword = "password",
+                    StaffPassword = "john12345",
+                    StaffPhoneNumber = "98765432",
                     StaffRating = 4,
                     RoleID = 2,
                     CreatedBy = "System",
