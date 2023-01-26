@@ -13,7 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Configurations\Entities\PassengerSeedConfiguration.cs" />
     <Compile Include="Configurations\Entities\StaffSeedConfiguration.cs" />
+    <Compile Include="Configurations\Entities\VehicleSeedConfiguration.cs" />
   </ItemGroup>
 
   <ItemGroup>
