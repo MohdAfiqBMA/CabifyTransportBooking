@@ -6,22 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Pages\Bookings\**" />
     <Compile Remove="Pages\Passengers\**" />
     <Compile Remove="Pages\Staffs\**" />
     <Compile Remove="Pages\VehicleCategory\**" />
     <Compile Remove="Pages\Vehicles\**" />
-    <Content Remove="Pages\Bookings\**" />
     <Content Remove="Pages\Passengers\**" />
     <Content Remove="Pages\Staffs\**" />
     <Content Remove="Pages\VehicleCategory\**" />
     <Content Remove="Pages\Vehicles\**" />
-    <EmbeddedResource Remove="Pages\Bookings\**" />
     <EmbeddedResource Remove="Pages\Passengers\**" />
     <EmbeddedResource Remove="Pages\Staffs\**" />
     <EmbeddedResource Remove="Pages\VehicleCategory\**" />
     <EmbeddedResource Remove="Pages\Vehicles\**" />
-    <None Remove="Pages\Bookings\**" />
     <None Remove="Pages\Passengers\**" />
     <None Remove="Pages\Staffs\**" />
     <None Remove="Pages\VehicleCategory\**" />
@@ -45,6 +41,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Pages\Booking\" />
+    <Folder Include="Pages\Vehicle\" />
+    <Folder Include="Pages\Staff\" />
     <Folder Include="wwwroot\fonts\" />
   </ItemGroup>
 
