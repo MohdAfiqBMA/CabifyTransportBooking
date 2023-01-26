@@ -22,7 +22,11 @@ namespace CabifyTransportBooking.Server.Configurations.Entities
                     StaffEmail = "john123@gmail.com",
                     StaffPassword = "password",
                     StaffRating = 4,
-                    RoleID = 0,
+                    RoleID = 2,
+                    CreatedBy = "System",
+                    UpdatedBy = "System",
+                    DateCreated = DateTime.Now,
+                    DateUpdated = DateTime.Now,
                 });
         }
     }

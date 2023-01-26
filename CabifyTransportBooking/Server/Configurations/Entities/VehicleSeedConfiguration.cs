@@ -15,13 +15,17 @@ namespace CabifyTransportBooking.Server.Configurations.Entities
             builder.HasData(
                 new Vehicle
                 {
+                    Id = 1,
                     VehicleMake = "BMW",
                     VehicleModel = "X1",
                     LicensePlateNumber = "SMU142N",
                     DriverID =  1,
-                    CategoryID = 0,
-             
-    });
+                    CategoryID = 1,
+                    CreatedBy = "System",
+                    UpdatedBy = "System",
+                    DateCreated = DateTime.Now,
+                    DateUpdated = DateTime.Now,
+                });
         }
     }
 }
