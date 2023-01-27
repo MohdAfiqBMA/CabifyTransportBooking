@@ -1,0 +1,50 @@
+﻿@page "/staffroles/create"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Create New StaffRoles</h3>
+<br />
+<EditForm Model="@staffrole" OnValidSubmit="CreateStaffRole">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Role Name: </label>
+    </div>
+    <InputText @bind-Value="@staffrole.RoleName" class="form-control" />
+    <ValidationMessage For="@(()=> staffrole.RoleName)" />
+
+    <div class="form-group">
+        <label>Role Description: </label>
+    </div>
+    <InputText @bind-Value="@staffrole.RoleDescription" class="form-control" />
+    <ValidationMessage For="@(()=> staffrole.RoleDescription)" />
+
+    <div class="form-group">
+        <label>Role Type: </label>
+    </div>
+    <InputText @bind-Value="@staffrole.RoleType" class="form-control" />
+    <ValidationMessage For="@(()=> staffrole.RoleType)" />
+
+    <button type="submit" class="btn btn-success btn-block">
+        Create StaffRole
+    </button>
+</EditForm>
+@code {
+    StaffRole staffrole = new StaffRole();
+
+    private IList<StaffRole> StaffRoles;
+
+    protected async override Task OnInitializedAsync()
+    {
+        StaffRoles = await _client.GetFromJsonAsync<List<StaffRole>>($"{Endpoints.StaffRolesEndpoint}");
+
+    }
+
+    private async Task CreateStaffRole()
+    {
+        await _client.PostAsJsonAsync(Endpoints.StaffRolesEndpoint, staffrole);
+        _navManager.NavigateTo("/staffroles/");
+    }
+
+}

@@ -5,6 +5,11 @@
 
 <h3 class="card-title">Staff</h3>
 <br />
+
+<a href="/staffs/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New Staff
+</a>
 @if (Staffs == null)
 {
     <div class="alert alert-info">Loading Staffs...</div>
@@ -28,26 +33,27 @@ else
         <tbody>
             @foreach (var staff in Staffs)
             {
-            <tr>
-                <td>@staff.Id</td>
-                <td>@staff.StaffGender</td>
-                <td>@staff.StaffPhoneNumber</td>
-                <td>@staff.StaffEmail</td>
-                <td>@staff.StaffPassword</td>
-                <td>@staff.StaffRating</td>
-                <td>@staff.RoleID</td>
-                <td>
-                    <a href="/staffs/view/@staff.Id" class="btn btn-primary">
-                        <span class="oi oi-book"></span>
-                    </a>
-                    <a href="/staffs/edit/@staff.Id" class="btn btn-warning">
-                        <span class="oi oi-pencil"></span>
-                    </a>
-                    <button class="btn btn-danger" @onclick="@(()=>Delete(staff.Id))">
-                        <span class="oi oi-delete"></span>
-                    </button>
-                </td>
-            </tr>
+                <tr>
+                    <td>@staff.Id</td>
+                    <td>@staff.StaffGender</td>
+                    <td>@staff.StaffName</td>
+                    <td>@staff.StaffPhoneNumber</td>
+                    <td>@staff.StaffEmail</td>
+                    <td>@staff.StaffPassword</td>
+                    <td>@staff.StaffRating</td>
+                    <td>@staff.RoleID</td>
+                    <td>
+                        <a href="/staffs/view/@staff.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+                        <a href="/staffs/edit/@staff.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(staff.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
