@@ -1,0 +1,73 @@
+﻿@inject HttpClient _client
+
+<EditForm Model="@staff" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Staff Gender: </label>
+    </div>
+    <InputText @bind-Value="@staff.StaffGender" class="form-control" />
+    <ValidationMessage For="@(()=> staff.StaffGender)" />
+
+    <div class="form-group">
+        <label>Staff Name: </label>
+    </div>
+    <InputText @bind-Value="@staff.StaffName" class="form-control" />
+    <ValidationMessage For="@(()=> staff.StaffName)" />
+
+    <div class="form-group">
+        <label>Staff Phone Number: </label>
+    </div>
+    <InputText @bind-Value="@staff.StaffPhoneNumber" class="form-control" />
+    <ValidationMessage For="@(()=> staff.StaffPhoneNumber)" />
+
+    <div class="form-group">
+        <label>Staff Email: </label>
+    </div>
+    <InputText @bind-Value="@staff.StaffEmail" class="form-control" />
+    <ValidationMessage For="@(()=> staff.StaffEmail)" />
+
+    <div class="form-group">
+        <label>Staff Password: </label>
+    </div>
+    <InputText @bind-Value="@staff.StaffPassword" class="form-control" />
+    <ValidationMessage For="@(()=> staff.StaffPassword)" />
+    <div class="form-group">
+        <label>Staff Rating: </label>
+    </div>
+    <InputNumber @bind-Value="@staff.StaffRating" class="form-control" />
+    <ValidationMessage For="@(()=> staff.StaffRating)" />
+    <div class="form-group">
+        <label>RoleID: </label>
+    </div>
+    <InputSelect @bind-Value="staff.RoleID" class="form-control">
+        <option value="">-- Select RoleID --</option>
+        @if (StaffRoles != null)
+        {
+            foreach (var staffroles in StaffRoles)
+            {
+                <option value="@staffroles.Id">@staffroles.Id</option>
+            }
+        }
+    </InputSelect>
+    <ValidationMessage For="@(()=>staff.RoleID)" />
+    <button type="submit" class="btn btn-success btn-block">
+        @ButtonText
+    </button>
+    <BackToList Target="staffs" />
+
+</EditForm>
+@code {
+    [Parameter] public Staff staff { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+    private IList<StaffRole> StaffRoles;
+
+    protected async override Task OnInitializedAsync()
+    {
+        StaffRoles = await _client.GetFromJsonAsync<List<StaffRole>>($"{Endpoints.StaffRolesEndpoint}");
+
+    }
+}

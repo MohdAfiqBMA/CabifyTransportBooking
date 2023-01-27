@@ -5,6 +5,11 @@
 
 <h3 class="card-title">StaffRole</h3>
 <br />
+
+<a href="/staffroles/create" class="btn btn-secondary">
+    <span class="oi oi-plus"></span>
+    Create New StaffRole
+</a>
 @if (StaffRoles == null)
 {
     <div class="alert alert-info">Loading StaffRoles...</div>
@@ -24,23 +29,23 @@ else
         <tbody>
             @foreach (var staffrole in StaffRoles)
             {
-            <tr>
-                <td>@staffrole.Id</td>
-                <td>@staffrole.RoleName</td>
-                <td>@staffrole.RoleDescription</td>
-                <td>@staffrole.RoleType</td>
-                <td>
-                    <a href="/staffroles/view/@staffrole.Id" class="btn btn-primary">
-                        <span class="oi oi-book"></span>
-                    </a>
-                    <a href="/staffroles/edit/@staffrole.Id" class="btn btn-warning">
-                        <span class="oi oi-pencil"></span>
-                    </a>
-                    <button class="btn btn-danger" @onclick="@(()=>Delete(staffrole.Id))">
-                        <span class="oi oi-delete"></span>
-                    </button>
-                </td>
-            </tr>
+                <tr>
+                    <td>@staffrole.Id</td>
+                    <td>@staffrole.RoleName</td>
+                    <td>@staffrole.RoleDescription</td>
+                    <td>@staffrole.RoleType</td>
+                    <td>
+                        <a href="/staffroles/view/@staffrole.Id" class="btn btn-primary">
+                            <span class="oi oi-book"></span>
+                        </a>
+                        <a href="/staffroles/edit/@staffrole.Id" class="btn btn-warning">
+                            <span class="oi oi-pencil"></span>
+                        </a>
+                        <button class="btn btn-danger" @onclick="@(()=>Delete(staffrole.Id))">
+                            <span class="oi oi-delete"></span>
+                        </button>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
