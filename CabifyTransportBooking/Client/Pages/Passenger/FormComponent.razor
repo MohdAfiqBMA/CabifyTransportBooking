@@ -1,0 +1,52 @@
+﻿@inject HttpClient _client
+
+<EditForm Model="@passenger" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Passenger Gender: </label>
+    </div>
+    <InputText @bind-Value="@passenger.PassengerGender" class="form-control" />
+    <ValidationMessage For="@(()=> passenger.PassengerGender)" />
+
+    <div class="form-group">
+        <label>Passenger Name: </label>
+    </div>
+    <InputText @bind-Value="@passenger.PassengerName" class="form-control" />
+    <ValidationMessage For="@(()=> passenger.PassengerName)" />
+
+    <div class="form-group">
+        <label>Passenger Phone Number: </label>
+    </div>
+    <InputText @bind-Value="@passenger.PassengerPhone" class="form-control" />
+    <ValidationMessage For="@(()=> passenger.PassengerPhone)" />
+
+    <div class="form-group">
+        <label>Passenger Email: </label>
+    </div>
+    <InputText @bind-Value="@passenger.PassengerEmail" class="form-control" />
+    <ValidationMessage For="@(()=> passenger.PassengerEmail)" />
+
+    <div class="form-group">
+        <label>Passenger Password: </label>
+    </div>
+    <InputText @bind-Value="@passenger.PassengerPassword" class="form-control" />
+    <ValidationMessage For="@(()=> passenger.PassengerPassword)" />
+    <div class="form-group">
+        <label>Passenger Rating: </label>
+    </div>
+    <InputNumber @bind-Value="@passenger.PassengerRating" class="form-control" />
+
+    <button type="submit" class="btn btn-success btn-block">
+        @ButtonText
+    </button>
+    <BackToList Target="passengers" />
+
+</EditForm>
+@code {
+    [Parameter] public Passenger passenger { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+}
