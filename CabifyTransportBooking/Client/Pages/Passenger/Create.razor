@@ -1,0 +1,68 @@
+﻿@page "/passengers/create"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Create New Passengers</h3>
+<br />
+<EditForm Model="@passenger" OnValidSubmit="CreatePassenger">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Passenger Gender: </label>
+    </div>
+    <InputText @bind-Value="@passenger.PassengerGender" class="form-control" />
+    <ValidationMessage For="@(()=> passenger.PassengerGender)" />
+
+    <div class="form-group">
+        <label>Passenger Name: </label>
+    </div>
+    <InputText @bind-Value="@passenger.PassengerName" class="form-control" />
+    <ValidationMessage For="@(()=> passenger.PassengerName)" />
+
+    <div class="form-group">
+        <label>Passenger Phone Number: </label>
+    </div>
+    <InputText @bind-Value="@passenger.PassengerPhone" class="form-control" />
+    <ValidationMessage For="@(()=> passenger.PassengerPhone)" />
+
+    <div class="form-group">
+        <label>Passenger Email: </label>
+    </div>
+    <InputText @bind-Value="@passenger.PassengerEmail" class="form-control" />
+    <ValidationMessage For="@(()=> passenger.PassengerEmail)" />
+
+    <div class="form-group">
+        <label>Passenger Password: </label>
+    </div>
+    <InputText @bind-Value="@passenger.PassengerPassword" class="form-control" />
+    <ValidationMessage For="@(()=> passenger.PassengerPassword)" />
+    <div class="form-group">
+        <label>Passenger Rating: </label>
+    </div>
+    <InputNumber @bind-Value="@passenger.PassengerRating" class="form-control" />
+
+    <button type="submit" class="btn btn-success btn-block">
+        Create Passenger
+    </button>
+</EditForm>
+
+
+@code {
+    Passenger passenger = new Passenger();
+
+    private IList<Passenger> Passengers;
+
+    protected async override Task OnInitializedAsync()
+    {
+        Passengers = await _client.GetFromJsonAsync<List<Passenger>>($"{Endpoints.PassengersEndpoint}");
+
+    }
+
+    private async Task CreatePassenger()
+    {
+        await _client.PostAsJsonAsync(Endpoints.PassengersEndpoint, passenger);
+        _navManager.NavigateTo("/passengers/");
+    }
+
+}
