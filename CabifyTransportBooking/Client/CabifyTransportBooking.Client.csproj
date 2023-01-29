@@ -41,7 +41,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Booking\" />
     <Folder Include="wwwroot\fonts\" />
   </ItemGroup>
 
