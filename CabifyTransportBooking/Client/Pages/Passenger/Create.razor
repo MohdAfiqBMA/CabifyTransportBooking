@@ -11,8 +11,12 @@
     <div class="form-group">
         <label>Passenger Gender: </label>
     </div>
-    <InputText @bind-Value="@passenger.PassengerGender" class="form-control" />
-    <ValidationMessage For="@(()=> passenger.PassengerGender)" />
+    <InputSelect class="form-control" @bind-Value="passenger.PassengerGender">
+        <option value="-- Select Gender --">-- Select Gender --</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </InputSelect>
+    <ValidationMessage For="@(() => passenger.PassengerGender)" />
 
     <div class="form-group">
         <label>Passenger Name: </label>
