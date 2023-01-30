@@ -29,7 +29,6 @@ namespace CabifyTransportBooking.Server.Controllers
         //public async Task<ActionResult<IEnumerable<StaffRole>>> GetStaffRoles()
         public async Task<IActionResult> GetStaffRoles()
         {
-            return NotFound();
             var staffroles = await _unitOfWork.StaffRoles.GetAll();
             return Ok(staffroles);
             //return await _context.StaffRoles.ToListAsync();
