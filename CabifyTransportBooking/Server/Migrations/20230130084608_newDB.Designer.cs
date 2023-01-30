@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CabifyTransportBooking.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230128094800_test1")]
-    partial class test1
+    [Migration("20230130084608_newDB")]
+    partial class newDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -108,13 +108,10 @@ namespace CabifyTransportBooking.Server.Migrations
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateIn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateOut")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateUpdated")
@@ -200,8 +197,8 @@ namespace CabifyTransportBooking.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 28, 17, 48, 0, 168, DateTimeKind.Local).AddTicks(1822),
-                            DateUpdated = new DateTime(2023, 1, 28, 17, 48, 0, 169, DateTimeKind.Local).AddTicks(4323),
+                            DateCreated = new DateTime(2023, 1, 30, 16, 46, 7, 194, DateTimeKind.Local).AddTicks(1401),
+                            DateUpdated = new DateTime(2023, 1, 30, 16, 46, 7, 195, DateTimeKind.Local).AddTicks(3931),
                             PassengerAddress = "Pasir Ris 51",
                             PassengerEmail = "benyeo@gmail.com",
                             PassengerGender = "Male",
@@ -233,18 +230,23 @@ namespace CabifyTransportBooking.Server.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("StaffEmail")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StaffGender")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StaffName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<string>("StaffPassword")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StaffPhoneNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("StaffRating")
@@ -267,8 +269,8 @@ namespace CabifyTransportBooking.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 28, 17, 48, 0, 171, DateTimeKind.Local).AddTicks(3078),
-                            DateUpdated = new DateTime(2023, 1, 28, 17, 48, 0, 171, DateTimeKind.Local).AddTicks(3088),
+                            DateCreated = new DateTime(2023, 1, 30, 16, 46, 7, 198, DateTimeKind.Local).AddTicks(8070),
+                            DateUpdated = new DateTime(2023, 1, 30, 16, 46, 7, 198, DateTimeKind.Local).AddTicks(8092),
                             RoleID = 2,
                             StaffEmail = "john123@gmail.com",
                             StaffGender = "Male",
@@ -297,12 +299,15 @@ namespace CabifyTransportBooking.Server.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("RoleDescription")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RoleName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RoleType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UpdatedBy")
@@ -317,8 +322,8 @@ namespace CabifyTransportBooking.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 28, 17, 48, 0, 170, DateTimeKind.Local).AddTicks(6343),
-                            DateUpdated = new DateTime(2023, 1, 28, 17, 48, 0, 170, DateTimeKind.Local).AddTicks(6353),
+                            DateCreated = new DateTime(2023, 1, 30, 16, 46, 7, 197, DateTimeKind.Local).AddTicks(5594),
+                            DateUpdated = new DateTime(2023, 1, 30, 16, 46, 7, 197, DateTimeKind.Local).AddTicks(5619),
                             RoleDescription = "Support employees by assigning tasks",
                             RoleName = "Admin",
                             RoleType = "Admin",
@@ -328,8 +333,8 @@ namespace CabifyTransportBooking.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 28, 17, 48, 0, 170, DateTimeKind.Local).AddTicks(6356),
-                            DateUpdated = new DateTime(2023, 1, 28, 17, 48, 0, 170, DateTimeKind.Local).AddTicks(6357),
+                            DateCreated = new DateTime(2023, 1, 30, 16, 46, 7, 197, DateTimeKind.Local).AddTicks(5625),
+                            DateUpdated = new DateTime(2023, 1, 30, 16, 46, 7, 197, DateTimeKind.Local).AddTicks(5627),
                             RoleDescription = "Drive passengers to the intended destination",
                             RoleName = "Driver",
                             RoleType = "Driver",
@@ -357,9 +362,11 @@ namespace CabifyTransportBooking.Server.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int?>("DriverID")
+                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<string>("LicensePlateNumber")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("StaffId")
@@ -372,9 +379,11 @@ namespace CabifyTransportBooking.Server.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("VehicleMake")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("VehicleModel")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -406,6 +415,7 @@ namespace CabifyTransportBooking.Server.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("Price")
@@ -424,8 +434,8 @@ namespace CabifyTransportBooking.Server.Migrations
                             Id = 1,
                             Capacity = 4,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 1, 28, 17, 48, 0, 170, DateTimeKind.Local).AddTicks(9321),
-                            DateUpdated = new DateTime(2023, 1, 28, 17, 48, 0, 170, DateTimeKind.Local).AddTicks(9327),
+                            DateCreated = new DateTime(2023, 1, 30, 16, 46, 7, 198, DateTimeKind.Local).AddTicks(293),
+                            DateUpdated = new DateTime(2023, 1, 30, 16, 46, 7, 198, DateTimeKind.Local).AddTicks(303),
                             Name = "Cabify Standard",
                             Price = 12f,
                             UpdatedBy = "System"

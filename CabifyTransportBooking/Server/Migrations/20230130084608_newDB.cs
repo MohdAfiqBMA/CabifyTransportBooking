@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CabifyTransportBooking.Server.Migrations
 {
-    public partial class CreatedConfigs : Migration
+    public partial class newDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -116,9 +116,9 @@ namespace CabifyTransportBooking.Server.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RoleDescription = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    RoleType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    RoleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RoleDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RoleType = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -135,7 +135,7 @@ namespace CabifyTransportBooking.Server.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Capacity = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<float>(type: "real", nullable: false),
                     DateCreated = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -260,10 +260,10 @@ namespace CabifyTransportBooking.Server.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StaffGender = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StaffName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StaffPhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StaffEmail = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StaffGender = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StaffName = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    StaffPhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StaffEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     StaffPassword = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     StaffRating = table.Column<int>(type: "int", nullable: false),
                     RoleID = table.Column<int>(type: "int", nullable: false),
@@ -293,8 +293,7 @@ namespace CabifyTransportBooking.Server.Migrations
                     PickUpLocation = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Destination = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateOut = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateIn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
                     AdminID = table.Column<int>(type: "int", nullable: true),
                     DriverID = table.Column<int>(type: "int", nullable: true),
                     PassengerID = table.Column<int>(type: "int", nullable: true),
@@ -339,10 +338,10 @@ namespace CabifyTransportBooking.Server.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    VehicleMake = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    VehicleModel = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LicensePlateNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DriverID = table.Column<int>(type: "int", nullable: true),
+                    VehicleMake = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    VehicleModel = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LicensePlateNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DriverID = table.Column<int>(type: "int", nullable: false),
                     StaffId = table.Column<int>(type: "int", nullable: true),
                     CategoryID = table.Column<int>(type: "int", nullable: false),
                     VehicleCategoryId = table.Column<int>(type: "int", nullable: true),
@@ -371,26 +370,26 @@ namespace CabifyTransportBooking.Server.Migrations
             migrationBuilder.InsertData(
                 table: "Passengers",
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "PassengerAddress", "PassengerEmail", "PassengerGender", "PassengerName", "PassengerPassword", "PassengerPhone", "PassengerRating", "UpdatedBy" },
-                values: new object[] { 1, "System", new DateTime(2023, 1, 26, 23, 44, 25, 94, DateTimeKind.Local).AddTicks(6129), new DateTime(2023, 1, 26, 23, 44, 25, 95, DateTimeKind.Local).AddTicks(4360), "Pasir Ris 51", "benyeo@gmail.com", "Male", "Ben Yeo", "Password", "98712345", 3, "System" });
+                values: new object[] { 1, "System", new DateTime(2023, 1, 30, 16, 46, 7, 194, DateTimeKind.Local).AddTicks(1401), new DateTime(2023, 1, 30, 16, 46, 7, 195, DateTimeKind.Local).AddTicks(3931), "Pasir Ris 51", "benyeo@gmail.com", "Male", "Ben Yeo", "Password", "98712345", 3, "System" });
 
             migrationBuilder.InsertData(
                 table: "StaffRoles",
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "RoleDescription", "RoleName", "RoleType", "UpdatedBy" },
                 values: new object[,]
                 {
-                    { 1, "System", new DateTime(2023, 1, 26, 23, 44, 25, 96, DateTimeKind.Local).AddTicks(7380), new DateTime(2023, 1, 26, 23, 44, 25, 96, DateTimeKind.Local).AddTicks(7388), "Support employees by assigning tasks", "Admin", "Admin", "System" },
-                    { 2, "System", new DateTime(2023, 1, 26, 23, 44, 25, 96, DateTimeKind.Local).AddTicks(7392), new DateTime(2023, 1, 26, 23, 44, 25, 96, DateTimeKind.Local).AddTicks(7393), "Drive passengers to the intended destination", "Driver", "Driver", "System" }
+                    { 1, "System", new DateTime(2023, 1, 30, 16, 46, 7, 197, DateTimeKind.Local).AddTicks(5594), new DateTime(2023, 1, 30, 16, 46, 7, 197, DateTimeKind.Local).AddTicks(5619), "Support employees by assigning tasks", "Admin", "Admin", "System" },
+                    { 2, "System", new DateTime(2023, 1, 30, 16, 46, 7, 197, DateTimeKind.Local).AddTicks(5625), new DateTime(2023, 1, 30, 16, 46, 7, 197, DateTimeKind.Local).AddTicks(5627), "Drive passengers to the intended destination", "Driver", "Driver", "System" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Staffs",
                 columns: new[] { "Id", "CreatedBy", "DateCreated", "DateUpdated", "RoleID", "StaffEmail", "StaffGender", "StaffName", "StaffPassword", "StaffPhoneNumber", "StaffRating", "StaffRoleId", "UpdatedBy" },
-                values: new object[] { 1, "System", new DateTime(2023, 1, 26, 23, 44, 25, 97, DateTimeKind.Local).AddTicks(5128), new DateTime(2023, 1, 26, 23, 44, 25, 97, DateTimeKind.Local).AddTicks(5134), 2, "john123@gmail.com", "Male", "John", "john12345", "98765432", 4, null, "System" });
+                values: new object[] { 1, "System", new DateTime(2023, 1, 30, 16, 46, 7, 198, DateTimeKind.Local).AddTicks(8070), new DateTime(2023, 1, 30, 16, 46, 7, 198, DateTimeKind.Local).AddTicks(8092), 2, "john123@gmail.com", "Male", "John", "john12345", "98765432", 4, null, "System" });
 
             migrationBuilder.InsertData(
                 table: "VehicleCategorys",
                 columns: new[] { "Id", "Capacity", "CreatedBy", "DateCreated", "DateUpdated", "Name", "Price", "UpdatedBy" },
-                values: new object[] { 1, 4, "System", new DateTime(2023, 1, 26, 23, 44, 25, 97, DateTimeKind.Local).AddTicks(797), new DateTime(2023, 1, 26, 23, 44, 25, 97, DateTimeKind.Local).AddTicks(802), "Cabify Standard", 12f, "System" });
+                values: new object[] { 1, 4, "System", new DateTime(2023, 1, 30, 16, 46, 7, 198, DateTimeKind.Local).AddTicks(293), new DateTime(2023, 1, 30, 16, 46, 7, 198, DateTimeKind.Local).AddTicks(303), "Cabify Standard", 12f, "System" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
