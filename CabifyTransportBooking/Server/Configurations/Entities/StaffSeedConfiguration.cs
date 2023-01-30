@@ -16,7 +16,8 @@ namespace CabifyTransportBooking.Server.Configurations.Entities
                 new Staff
                 {
                     Id = 1,
-                    StaffName="John",
+                    StaffFirstName = "Jon",
+                    StaffLastName = "Snow",
                     StaffGender = "Male",
                     StaffEmail = "john123@gmail.com",
                     StaffPhoneNumber = "98765432",

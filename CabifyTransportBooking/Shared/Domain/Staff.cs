@@ -12,8 +12,11 @@ namespace CabifyTransportBooking.Shared.Domain
         [Required]
         public string StaffGender { get; set; }
         [Required]
-        [StringLength(200, MinimumLength = 2, ErrorMessage = "Name does not meet length requirements")]
-        public string StaffName { get; set; }
+        [StringLength(100, MinimumLength = 2, ErrorMessage = "First Name does not meet length requirements")]
+        public string StaffFirstName { get; set; }
+        [Required]
+        [StringLength(100, MinimumLength = 2, ErrorMessage = "Last Name does not meet length requirements")]
+        public string StaffLastName { get; set; }
         [Required]
         [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"(6|8|9)\d{7}", ErrorMessage = "Phone Number given is not a valid number.")]

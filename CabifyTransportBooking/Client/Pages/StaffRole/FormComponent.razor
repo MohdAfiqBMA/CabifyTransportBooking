@@ -3,7 +3,7 @@
 <EditForm Model="@staffrole" OnValidSubmit="@OnValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
-
+    <fieldset disabled="@Disabled">
     <div class="form-group">
         <label>Role Name: </label>
     </div>
@@ -20,14 +20,19 @@
         <label>Role Type: </label>
     </div>
     <InputText @bind-Value="@staffrole.RoleType" class="form-control" />
-    <ValidationMessage For="@(()=> staffrole.RoleType)" />
+   <ValidationMessage For="@(()=> staffrole.RoleType)" />
+    </fieldset>
+    @if (!Disabled)
+    {
     <button type="submit" class="btn btn-success btn-block">
         @ButtonText
     </button>
+    }
     <BackToList Target="staffroles" />
 
 </EditForm>
 @code {
+    [Parameter] public bool Disabled { get; set; } = false;
     [Parameter] public StaffRole staffrole { get; set; }
     [Parameter] public string ButtonText { get; set; } = "Save";
     [Parameter] public EventCallback OnValidSubmit { get; set; }

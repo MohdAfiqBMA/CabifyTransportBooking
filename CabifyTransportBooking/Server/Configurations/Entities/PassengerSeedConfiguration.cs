@@ -18,7 +18,8 @@ namespace CabifyTransportBooking.Server.Configurations.Entities
                 {
                     Id = 1,
                     PassengerGender = "Male",
-                    PassengerName = "Ben Yeo",
+                    PassengerFirstName = "Ben",
+                    PassengerLastName  = "Yeo",
                     PassengerPhone = "98712345",
                     PassengerEmail = "benyeo@gmail.com",
                     PassengerRating = 3,

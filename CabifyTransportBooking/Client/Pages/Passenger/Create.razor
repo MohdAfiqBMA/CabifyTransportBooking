@@ -4,47 +4,9 @@
 
 <h3 class="card-title">Create New Passengers</h3>
 <br />
-<EditForm Model="@passenger" OnValidSubmit="CreatePassenger">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
 
-    <div class="form-group">
-        <label>Passenger Gender: </label>
-    </div>
-    <InputSelect class="form-control" @bind-Value="passenger.PassengerGender">
-        <option value="-- Select Gender --">-- Select Gender --</option>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-    </InputSelect>
-    <ValidationMessage For="@(() => passenger.PassengerGender)" />
+<FormComponent ButtonText="Create Passenger" passenger="passenger" OnValidSubmit="@CreatePassenger" />
 
-    <div class="form-group">
-        <label>Passenger Name: </label>
-    </div>
-    <InputText @bind-Value="@passenger.PassengerName" class="form-control" />
-    <ValidationMessage For="@(()=> passenger.PassengerName)" />
-
-    <div class="form-group">
-        <label>Passenger Phone Number: </label>
-    </div>
-    <InputText @bind-Value="@passenger.PassengerPhone" class="form-control" />
-    <ValidationMessage For="@(()=> passenger.PassengerPhone)" />
-
-    <div class="form-group">
-        <label>Passenger Email: </label>
-    </div>
-    <InputText @bind-Value="@passenger.PassengerEmail" class="form-control" />
-    <ValidationMessage For="@(()=> passenger.PassengerEmail)" />
-    
-    <div class="form-group">
-        <label>Passenger Rating: </label>
-    </div>
-    <InputNumber @bind-Value="@passenger.PassengerRating" class="form-control" />
-
-    <button type="submit" class="btn btn-success btn-block">
-        Create Passenger
-    </button>
-</EditForm>
 
 
 @code {

@@ -15,7 +15,6 @@
     {
         Vehicles = await _client.GetFromJsonAsync<List<Vehicle>>($"{Endpoints.VehiclesEndpoint}");
         Passenger = await _client.GetFromJsonAsync<List<Passenger>>($"{Endpoints.PassengersEndpoint}");
-        //booking.DateOut = DateTime.Now;
     }
 
     private async Task CreateBooking()

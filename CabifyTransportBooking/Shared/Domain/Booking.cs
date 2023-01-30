@@ -20,7 +20,6 @@ namespace CabifyTransportBooking.Shared.Domain
         [Required]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
-        [Required]
         public int? AdminId { get; set; }
         public virtual Staff Admin { get; set; }
         [Required]
