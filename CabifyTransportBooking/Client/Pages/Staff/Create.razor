@@ -44,7 +44,7 @@
     <div class="form-group">
         <label>RoleID: </label>
     </div>
-    <InputSelect @bind-Value="staff.RoleID" class="form-control">
+    <InputSelect @bind-Value="staff.StaffRoleId" class="form-control">
         <option value="">-- Select RoleID --</option>
         @if (StaffRoles != null)
         {
@@ -54,7 +54,7 @@
             }
         }
     </InputSelect>
-    <ValidationMessage For="@(()=>staff.RoleID)" />
+    <ValidationMessage For="@(()=>staff.StaffRoleId)" />
     <button type="submit" class="btn btn-success btn-block">
         Create Staff
     </button>

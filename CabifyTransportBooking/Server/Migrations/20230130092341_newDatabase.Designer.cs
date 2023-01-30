@@ -4,14 +4,16 @@ using CabifyTransportBooking.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CabifyTransportBooking.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230130092341_newDatabase")]
+    partial class newDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -194,8 +196,6 @@ namespace CabifyTransportBooking.Server.Migrations
                             CreatedBy = "System",
                             DateCreated = new DateTime(2023, 1, 30, 17, 23, 40, 935, DateTimeKind.Local).AddTicks(4930),
                             DateUpdated = new DateTime(2023, 1, 30, 17, 23, 40, 936, DateTimeKind.Local).AddTicks(2740),
-                            DateCreated = new DateTime(2023, 1, 30, 16, 46, 7, 194, DateTimeKind.Local).AddTicks(1401),
-                            DateUpdated = new DateTime(2023, 1, 30, 16, 46, 7, 195, DateTimeKind.Local).AddTicks(3931),
                             PassengerAddress = "Pasir Ris 51",
                             PassengerEmail = "benyeo@gmail.com",
                             PassengerGender = "Male",
@@ -234,8 +234,6 @@ namespace CabifyTransportBooking.Server.Migrations
                         .IsRequired()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
-                    b.Property<string>("StaffPassword")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StaffPhoneNumber")
                         .IsRequired()
@@ -263,8 +261,6 @@ namespace CabifyTransportBooking.Server.Migrations
                             CreatedBy = "System",
                             DateCreated = new DateTime(2023, 1, 30, 17, 23, 40, 938, DateTimeKind.Local).AddTicks(1379),
                             DateUpdated = new DateTime(2023, 1, 30, 17, 23, 40, 938, DateTimeKind.Local).AddTicks(1384),
-                            DateCreated = new DateTime(2023, 1, 30, 16, 46, 7, 198, DateTimeKind.Local).AddTicks(8070),
-                            DateUpdated = new DateTime(2023, 1, 30, 16, 46, 7, 198, DateTimeKind.Local).AddTicks(8092),
                             StaffEmail = "john123@gmail.com",
                             StaffGender = "Male",
                             StaffName = "John",
@@ -317,8 +313,6 @@ namespace CabifyTransportBooking.Server.Migrations
                             CreatedBy = "System",
                             DateCreated = new DateTime(2023, 1, 30, 17, 23, 40, 937, DateTimeKind.Local).AddTicks(4875),
                             DateUpdated = new DateTime(2023, 1, 30, 17, 23, 40, 937, DateTimeKind.Local).AddTicks(4883),
-                            DateCreated = new DateTime(2023, 1, 30, 16, 46, 7, 197, DateTimeKind.Local).AddTicks(5594),
-                            DateUpdated = new DateTime(2023, 1, 30, 16, 46, 7, 197, DateTimeKind.Local).AddTicks(5619),
                             RoleDescription = "Support employees by assigning tasks",
                             RoleName = "Admin",
                             RoleType = "Admin",
@@ -330,8 +324,6 @@ namespace CabifyTransportBooking.Server.Migrations
                             CreatedBy = "System",
                             DateCreated = new DateTime(2023, 1, 30, 17, 23, 40, 937, DateTimeKind.Local).AddTicks(4886),
                             DateUpdated = new DateTime(2023, 1, 30, 17, 23, 40, 937, DateTimeKind.Local).AddTicks(4888),
-                            DateCreated = new DateTime(2023, 1, 30, 16, 46, 7, 197, DateTimeKind.Local).AddTicks(5625),
-                            DateUpdated = new DateTime(2023, 1, 30, 16, 46, 7, 197, DateTimeKind.Local).AddTicks(5627),
                             RoleDescription = "Drive passengers to the intended destination",
                             RoleName = "Driver",
                             RoleType = "Driver",
@@ -433,8 +425,6 @@ namespace CabifyTransportBooking.Server.Migrations
                             CreatedBy = "System",
                             DateCreated = new DateTime(2023, 1, 30, 17, 23, 40, 937, DateTimeKind.Local).AddTicks(7915),
                             DateUpdated = new DateTime(2023, 1, 30, 17, 23, 40, 937, DateTimeKind.Local).AddTicks(7921),
-                            DateCreated = new DateTime(2023, 1, 30, 16, 46, 7, 198, DateTimeKind.Local).AddTicks(293),
-                            DateUpdated = new DateTime(2023, 1, 30, 16, 46, 7, 198, DateTimeKind.Local).AddTicks(303),
                             Name = "Cabify Standard",
                             Price = 12f,
                             UpdatedBy = "System"

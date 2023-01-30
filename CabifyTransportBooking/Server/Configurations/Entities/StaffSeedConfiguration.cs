@@ -21,7 +21,7 @@ namespace CabifyTransportBooking.Server.Configurations.Entities
                     StaffEmail = "john123@gmail.com",
                     StaffPhoneNumber = "98765432",
                     StaffRating = 4,
-                    RoleID = 2,
+                    StaffRoleId = 2,
                     CreatedBy = "System",
                     UpdatedBy = "System",
                     DateCreated = DateTime.Now,

@@ -6,7 +6,7 @@
 
 <FormComponent ButtonText="Create Booking" booking="booking" OnValidSubmit="@CreateBooking" />
 
-@code { Booking booking = new Booking();
+@code { Booking booking = new Booking() { Date = DateTime.Now };
 
     private IList<Vehicle> Vehicles;
     private IList<Passenger> Passenger;
