@@ -10,6 +10,7 @@ namespace CabifyTransportBooking.Shared.Domain
     public class VehicleCategory : BaseDomainModel
     {
         [Required]
+        [StringLength(100, MinimumLength = 2, ErrorMessage = "Category does not meet length requirements")]
         public string Name { get; set; }
         [Required]
         public int Capacity { get; set; }
