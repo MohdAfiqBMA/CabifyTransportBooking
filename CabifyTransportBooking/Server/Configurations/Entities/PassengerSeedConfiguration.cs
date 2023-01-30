@@ -21,7 +21,6 @@ namespace CabifyTransportBooking.Server.Configurations.Entities
                     PassengerName = "Ben Yeo",
                     PassengerPhone = "98712345",
                     PassengerEmail = "benyeo@gmail.com",
-                    PassengerPassword = "Password",
                     PassengerRating = 3,
                     PassengerAddress = "Pasir Ris 51",
                     CreatedBy = "System",

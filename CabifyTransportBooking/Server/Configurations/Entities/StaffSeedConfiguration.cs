@@ -19,7 +19,6 @@ namespace CabifyTransportBooking.Server.Configurations.Entities
                     StaffName="John",
                     StaffGender = "Male",
                     StaffEmail = "john123@gmail.com",
-                    StaffPassword = "john12345",
                     StaffPhoneNumber = "98765432",
                     StaffRating = 4,
                     RoleID = 2,

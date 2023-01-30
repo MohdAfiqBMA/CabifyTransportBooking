@@ -23,14 +23,19 @@
     <ValidationMessage For="@(()=> booking.PaymentMethod)" />
 
     <div class="form-group">
-        <label>Date Out: </label>
+        <label>Date: </label>
         <div>
             <InputDate @bind-Value="@booking.Date" class="form-control" />
             <ValidationMessage For="@(() => booking.Date)" />
         </div>
     </div>
 
+    <button type="submit" class="btn btn-success btn-block">
+        @ButtonText
+    </button>
+
 </EditForm>
+
 
 @code {
     [Parameter] public Booking booking { get; set; }
