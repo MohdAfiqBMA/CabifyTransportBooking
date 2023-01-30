@@ -1,0 +1,37 @@
+﻿@inject HttpClient _client
+
+<EditForm Model="@VehicleCategory" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Name: </label>
+    </div>
+    <InputText @bind-Value="@VehicleCategory.Name" class="form-control" />
+    <ValidationMessage For="@(()=> VehicleCategory.Name)" />
+
+    <div class="form-group">
+        <label>Capacity: </label>
+    </div>
+    <InputNumber @bind-Value="@VehicleCategory.Capacity" class="form-control" />
+    <ValidationMessage For="@(()=> VehicleCategory.Capacity)" />
+
+    <div class="form-group">
+        <label>Price: </label>
+    </div>
+    <InputNumber @bind-Value="@VehicleCategory.Price" class="form-control" />
+    <ValidationMessage For="@(()=> VehicleCategory.Price)" />
+
+    
+    <button type="submit" class="btn btn-success btn-block">
+        @ButtonText
+    </button>
+    <BackToList Target="VehicleCategorys" />
+
+</EditForm>
+@code {
+    [Parameter] public VehicleCategory VehicleCategory { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+}

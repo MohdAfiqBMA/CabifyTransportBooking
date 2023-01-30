@@ -8,19 +8,15 @@
   <ItemGroup>
     <Compile Remove="Pages\Passengers\**" />
     <Compile Remove="Pages\Staffs\**" />
-    <Compile Remove="Pages\VehicleCategory\**" />
     <Compile Remove="Pages\Vehicles\**" />
     <Content Remove="Pages\Passengers\**" />
     <Content Remove="Pages\Staffs\**" />
-    <Content Remove="Pages\VehicleCategory\**" />
     <Content Remove="Pages\Vehicles\**" />
     <EmbeddedResource Remove="Pages\Passengers\**" />
     <EmbeddedResource Remove="Pages\Staffs\**" />
-    <EmbeddedResource Remove="Pages\VehicleCategory\**" />
     <EmbeddedResource Remove="Pages\Vehicles\**" />
     <None Remove="Pages\Passengers\**" />
     <None Remove="Pages\Staffs\**" />
-    <None Remove="Pages\VehicleCategory\**" />
     <None Remove="Pages\Vehicles\**" />
   </ItemGroup>
 

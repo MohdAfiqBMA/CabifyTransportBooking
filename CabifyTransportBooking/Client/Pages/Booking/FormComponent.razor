@@ -1,1 +1,52 @@
-﻿
+﻿@inject HttpClient _client
+
+<EditForm Model="@booking" OnValidSubmit="@OnValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>Pick Up Location: </label>
+    </div>
+    <InputText @bind-Value="@booking.PickUpLocation" class="form-control" />
+    <ValidationMessage For="@(()=> booking.PickUpLocation)" />
+
+    <div class="form-group">
+        <label>Destination: </label>
+    </div>
+    <InputText @bind-Value="@booking.Destination" class="form-control" />
+    <ValidationMessage For="@(()=> booking.Destination)" />
+
+    <div class="form-group">
+        <label>Payment Method: </label>
+    </div>
+    <InputText @bind-Value="@booking.PaymentMethod" class="form-control" />
+    <ValidationMessage For="@(()=> booking.PaymentMethod)" />
+
+    <div class="form-group">
+        <label>Date Out: </label>
+        <div>
+            <InputDate @bind-Value="@booking.Date" class="form-control" />
+            <ValidationMessage For="@(() => booking.Date)" />
+        </div>
+    </div>
+
+</EditForm>
+
+@code {
+    [Parameter] public Booking booking { get; set; }
+    [Parameter] public string ButtonText { get; set; } = "Save";
+    [Parameter] public EventCallback OnValidSubmit { get; set; }
+
+    private IList<StaffRole> StaffRoles;
+    private IList<Staff> Staffs;
+    private IList<Passenger> Passengers;
+    private IList<VehicleCategory> VehicleCategorys;
+
+    protected async override Task OnInitializedAsync()
+    {
+        StaffRoles = await _client.GetFromJsonAsync<List<StaffRole>>($"{Endpoints.StaffRolesEndpoint}");
+        Passengers = await _client.GetFromJsonAsync<List<Passenger>>($"{Endpoints.PassengersEndpoint}");
+        Staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
+        VehicleCategorys = await _client.GetFromJsonAsync<List<VehicleCategory>>($"{Endpoints.VehicleCategorysEndpoint}");
+
+    } }
