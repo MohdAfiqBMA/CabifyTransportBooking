@@ -1,0 +1,53 @@
+﻿@page "/VehicleCategorys/create"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Create New VehicleCategorys</h3>
+<br />
+<EditForm Model="@VehicleCategory" OnValidSubmit="CreateVehicleCategory">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label>VehicleCategory Name: </label>
+    </div>
+    <InputText @bind-Value="@VehicleCategory.Name" class="form-control" />
+    <ValidationMessage For="@(()=> VehicleCategory.Name)" />
+
+    <div class="form-group">
+        <label>VehicleCategory Capacity: </label>
+    </div>
+    <InputNumber @bind-Value="@VehicleCategory.Capacity" class="form-control" />
+    <ValidationMessage For="@(()=> VehicleCategory.Capacity)" />
+
+    <div class="form-group">
+        <label>VehicleCategory Price: </label>
+    </div>
+    <InputNumber @bind-Value="@VehicleCategory.Price" class="form-control" />
+    <ValidationMessage For="@(()=> VehicleCategory.Price)" />
+
+    
+    <button type="submit" class="btn btn-success btn-block">
+        Create Vehicle Category
+    </button>
+</EditForm>
+
+
+@code {
+    VehicleCategory VehicleCategory = new VehicleCategory();
+
+    private IList<VehicleCategory> VehicleCategorys;
+
+    protected async override Task OnInitializedAsync()
+    {
+        VehicleCategorys = await _client.GetFromJsonAsync<List<VehicleCategory>>($"{Endpoints.VehicleCategorysEndpoint}");
+
+    }
+
+    private async Task CreateVehicleCategory()
+    {
+        await _client.PostAsJsonAsync(Endpoints.VehicleCategorysEndpoint, VehicleCategory);
+        _navManager.NavigateTo("/VehicleCategorys/");
+    }
+
+}

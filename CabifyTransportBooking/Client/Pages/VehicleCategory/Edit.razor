@@ -1,0 +1,21 @@
+﻿@page "/VehicleCategorys/edit/{id:int}"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3 class="card-title">Edit VehicleCategory</h3>
+<FormComponent ButtonText="Update" OnValidSubmit="EditVehicleCategory" VehicleCategory="VehicleCategory" />
+
+@code {
+    [Parameter] public int id { get; set; }
+    VehicleCategory VehicleCategory = new VehicleCategory();
+
+    protected async override Task OnParametersSetAsync()
+    {
+        VehicleCategory = await _client.GetFromJsonAsync<VehicleCategory>($"{Endpoints.VehicleCategorysEndpoint}/{id}");
+    }
+    async Task EditVehicleCategory()
+    {
+        await _client.PutAsJsonAsync($"{Endpoints.VehicleCategorysEndpoint}/{id}", VehicleCategory);
+        _navManager.NavigateTo("/VehicleCategorys/");
+    }
+}
