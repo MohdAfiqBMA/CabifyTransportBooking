@@ -1,4 +1,4 @@
-﻿@page  "/bookings/"
+@page  "/bookings/"
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
@@ -57,9 +57,9 @@ else
                     </button>
                 </td>
             </tr>
-            }
-        </tbody>
-    </table>}
+        }
+    </tbody>
+</table>}
 @code {
 
     private List<Booking> Bookings;
