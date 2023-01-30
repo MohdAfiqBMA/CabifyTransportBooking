@@ -21,16 +21,16 @@ namespace CabifyTransportBooking.Shared.Domain
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
         [Required]
-        public int? AdminID { get; set; }
+        public int? AdminId { get; set; }
         public virtual Staff Admin { get; set; }
         [Required]
-        public int? DriverID { get; set; }
+        public int? DriverId { get; set; }
         public virtual Staff Driver { get; set; }
         [Required]
-        public int? PassengerID { get; set; }
+        public int? PassengerId { get; set; }
         public virtual Passenger Passenger { get; set; }
         [Required]
-        public int? CategoryID { get; set; }
+        public int? CategoryId { get; set; }
         public virtual VehicleCategory Category { get; set; }
 
 
