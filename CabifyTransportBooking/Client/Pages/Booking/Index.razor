@@ -2,6 +2,7 @@
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
+@implements IDisposable
 
 <h3 class="card-title"> Car Bookings</h3>
 
@@ -16,24 +17,24 @@
     <div class="alert alert-info">Loading Bookings...</div> }
 else
 {
-    <table class="table table-responsive">
-        <thead>
-            <tr>
-                <th>Booking Id</th>
-                <th>Pick Up Location</th>
-                <th>Destinaton</th>
-                <th>Payment Method</th>
-                <th>Date</th>
-                <th>Admin ID</th>
-                <th>Driver ID</th>
-                <th>Passenger ID</th>
-                <th>Category ID</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var booking in Bookings)
-            {
+<table class="table table-responsive" id="bookingsTable">
+    <thead>
+        <tr>
+            <th>Booking Id</th>
+            <th>Pick Up Location</th>
+            <th>Destinaton</th>
+            <th>Payment Method</th>
+            <th>Date</th>
+            <th>Admin ID</th>
+            <th>Driver ID</th>
+            <th>Passenger ID</th>
+            <th>Category ID</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var booking in Bookings)
+        {
             <tr>
                 <td>@booking.Id</td>
                 <td>@booking.PickUpLocation</td>
@@ -56,9 +57,9 @@ else
                     </button>
                 </td>
             </tr>
-            }
-        </tbody>
-    </table>}
+        }
+    </tbody>
+</table>}
 @code {
 
     private List<Booking> Bookings;
