@@ -12,7 +12,6 @@ namespace CabifyTransportBooking.Shared.Domain
         public string PassengerName { get; set; }
         public string PassengerPhone { get; set; }
         public string PassengerEmail { get; set; }
-        public string PassengerPassword { get; set; }
         public int PassengerRating { get; set; }
         public string  PassengerAddress { get; set; }
 

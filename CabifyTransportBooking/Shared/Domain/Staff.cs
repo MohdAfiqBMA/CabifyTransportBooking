@@ -22,10 +22,9 @@ namespace CabifyTransportBooking.Shared.Domain
         [DataType(DataType.EmailAddress, ErrorMessage = "Email Address given is not a valid email.")]
         [EmailAddress]
         public string StaffEmail { get; set; }
-        public string StaffPassword { get; set; }
         public int StaffRating { get; set; }
         [Required]
-        public int RoleID { get; set; }
+        public int StaffRoleId { get; set; }
         public virtual StaffRole StaffRole { get; set; }
 
     }

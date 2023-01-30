@@ -12,13 +12,13 @@ namespace CabifyTransportBooking.Shared.Domain
         public string Destination { get; set; }
         public string PaymentMethod { get; set; }
         public DateTime Date { get; set; }
-        public int? AdminID { get; set; }
+        public int? AdminId { get; set; }
         public virtual Staff Admin { get; set; }
-        public int? DriverID { get; set; }
+        public int? DriverId { get; set; }
         public virtual Staff Driver { get; set; }
-        public int? PassengerID { get; set; }
+        public int? PassengerId { get; set; }
         public virtual Passenger Passenger { get; set; }
-        public int? CategoryID { get; set; }
+        public int? CategoryId { get; set; }
         public virtual VehicleCategory Category { get; set; }
 
 

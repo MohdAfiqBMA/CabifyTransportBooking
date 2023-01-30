@@ -23,12 +23,72 @@
     <ValidationMessage For="@(()=> booking.PaymentMethod)" />
 
     <div class="form-group">
-        <label>Date Out: </label>
+        <label>Date & Time: </label>
         <div>
             <InputDate @bind-Value="@booking.Date" class="form-control" />
             <ValidationMessage For="@(() => booking.Date)" />
         </div>
     </div>
+    <div class="form-group">
+        <label>Admin ID: </label>
+    </div>
+    <InputSelect @bind-Value="booking.AdminId" class="form-control">
+        <option value="">-- Select AdminId --</option>
+        @if (Staffs != null)
+        {
+            foreach (var staffs in Staffs)
+            {
+                <option value="@staffs.Id">@staffs.Id</option>
+            }
+        }
+    </InputSelect>
+    <ValidationMessage For="@(()=>booking.AdminId)" />
+    <div class="form-group">
+        <label>Driver ID: </label>
+    </div>
+    <InputSelect @bind-Value="booking.DriverId" class="form-control">
+        <option value="">-- Select DriverId --</option>
+        @if (Staffs != null)
+        {
+            foreach (var staffs in Staffs)
+            {
+                <option value="@staffs.Id">@staffs.Id</option>
+            }
+        }
+    </InputSelect>
+    <ValidationMessage For="@(()=>booking.DriverId)" />
+    <div class="form-group">
+        <label>Passenger ID: </label>
+    </div>
+    <InputSelect @bind-Value="booking.PassengerId" class="form-control">
+        <option value="">-- Select PassengerId --</option>
+        @if (Passengers != null)
+        {
+            foreach (var passengers in Passengers)
+            {
+                <option value="@passengers.Id">@passengers.Id</option>
+            }
+        }
+    </InputSelect>
+    <ValidationMessage For="@(()=>booking.PassengerId)" />
+    <div class="form-group">
+        <label>Category ID: </label>
+    </div>
+    <InputSelect @bind-Value="booking.CategoryId" class="form-control">
+        <option value="">-- Select RoleID --</option>
+        @if (VehicleCategorys != null)
+        {
+            foreach (var vehiclecategorys in VehicleCategorys)
+            {
+                <option value="@vehiclecategorys.Id">@vehiclecategorys.Id</option>
+            }
+        }
+    </InputSelect>
+    <ValidationMessage For="@(()=>booking.CategoryId)" />
+    <button type="submit" class="btn btn-success btn-block">
+        @ButtonText
+    </button>
+    <BackToList Target="bookings" />
 
 </EditForm>
 
@@ -37,14 +97,12 @@
     [Parameter] public string ButtonText { get; set; } = "Save";
     [Parameter] public EventCallback OnValidSubmit { get; set; }
 
-    private IList<StaffRole> StaffRoles;
     private IList<Staff> Staffs;
     private IList<Passenger> Passengers;
     private IList<VehicleCategory> VehicleCategorys;
 
     protected async override Task OnInitializedAsync()
     {
-        StaffRoles = await _client.GetFromJsonAsync<List<StaffRole>>($"{Endpoints.StaffRolesEndpoint}");
         Passengers = await _client.GetFromJsonAsync<List<Passenger>>($"{Endpoints.PassengersEndpoint}");
         Staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
         VehicleCategorys = await _client.GetFromJsonAsync<List<VehicleCategory>>($"{Endpoints.VehicleCategorysEndpoint}");

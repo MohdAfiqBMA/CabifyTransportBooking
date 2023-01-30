@@ -37,11 +37,6 @@
     <ValidationMessage For="@(()=> staff.StaffEmail)" />
 
     <div class="form-group">
-        <label>Staff Password: </label>
-    </div>
-    <InputText @bind-Value="@staff.StaffPassword" class="form-control" />
-    <ValidationMessage For="@(()=> staff.StaffPassword)" />
-    <div class="form-group">
         <label>Staff Rating: </label>
     </div>
     <InputNumber @bind-Value="@staff.StaffRating" class="form-control" />
@@ -49,7 +44,7 @@
     <div class="form-group">
         <label>RoleID: </label>
     </div>
-    <InputSelect @bind-Value="staff.RoleID" class="form-control">
+    <InputSelect @bind-Value="staff.StaffRoleId" class="form-control">
         <option value="">-- Select RoleID --</option>
         @if (StaffRoles != null)
         {
@@ -59,7 +54,7 @@
             }
         }
     </InputSelect>
-    <ValidationMessage For="@(()=>staff.RoleID)" />
+    <ValidationMessage For="@(()=>staff.StaffRoleId)" />
     <button type="submit" class="btn btn-success btn-block">
         Create Staff
     </button>
