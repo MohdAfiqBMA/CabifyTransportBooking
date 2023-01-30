@@ -15,7 +15,8 @@ namespace CabifyTransportBooking.Shared.Domain
         [Required]
         public int Capacity { get; set; }
         [Required]
-        public float Price { get; set; }
+        [DataType(DataType.Currency)]
+        public double Price { get; set; }
 
     }
 }

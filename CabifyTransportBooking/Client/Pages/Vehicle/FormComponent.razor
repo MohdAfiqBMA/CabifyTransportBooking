@@ -3,58 +3,63 @@
 <EditForm Model="@vehicle" OnValidSubmit="@OnValidSubmit">
     <DataAnnotationsValidator />
     <ValidationSummary />
+    <fieldset disabled="@Disabled">
+        <div class="form-group">
+            <label>Vehicle Make: </label>
+        </div>
+        <InputText @bind-Value="@vehicle.VehicleMake" class="form-control" />
+        <ValidationMessage For="@(()=> vehicle.VehicleMake)" />
 
-    <div class="form-group">
-        <label>Vehicle Make: </label>
-    </div>
-    <InputText @bind-Value="@vehicle.VehicleMake" class="form-control" />
-    <ValidationMessage For="@(()=> vehicle.VehicleMake)" />
+        <div class="form-group">
+            <label>Vehicle Model: </label>
+        </div>
+        <InputText @bind-Value="@vehicle.VehicleModel" class="form-control" />
+        <ValidationMessage For="@(()=> vehicle.VehicleModel)" />
 
-    <div class="form-group">
-        <label>Vehicle Model: </label>
-    </div>
-    <InputText @bind-Value="@vehicle.VehicleModel" class="form-control" />
-    <ValidationMessage For="@(()=> vehicle.VehicleModel)" />
-
-    <div class="form-group">
-        <label>Vehicle License Plate Number: </label>
-    </div>
-    <InputText @bind-Value="@vehicle.LicensePlateNumber" class="form-control" />
-    <ValidationMessage For="@(()=> vehicle.LicensePlateNumber)" />
-    <div class="form-group">
-        <label>DriverID: </label>
-    </div>
-    <InputSelect @bind-Value="vehicle.DriverID" class="form-control">
-        <option value="">-- Select DriverID --</option>
-        @if (Staffs != null)
-        {
-            foreach (var staff in Staffs)
+        <div class="form-group">
+            <label>Vehicle License Plate Number: </label>
+        </div>
+        <InputText @bind-Value="@vehicle.LicensePlateNumber" class="form-control" />
+        <ValidationMessage For="@(()=> vehicle.LicensePlateNumber)" />
+        <div class="form-group">
+            <label>DriverID: </label>
+        </div>
+        <InputSelect @bind-Value="vehicle.DriverID" class="form-control">
+            <option value="">-- Select DriverID --</option>
+            @if (Staffs != null)
             {
-                <option value="@staff.Id">@staff.Id</option>
+                foreach (var staff in Staffs)
+                {
+                    <option value="@staff.Id">@staff.Id</option>
+                }
             }
-        }
-    </InputSelect>
-    <ValidationMessage For="@(()=>vehicle.DriverID)" />
-    <div class="form-group">
-        <label>CategoryID: </label>
-    </div>
-    <InputSelect @bind-Value="vehicle.CategoryID" class="form-control">
-        <option value="">-- Select CategoryID --</option>
-        @if (VehicleCategorys != null)
-        {
-            foreach (var vehiclecategory in VehicleCategorys)
+        </InputSelect>
+        <ValidationMessage For="@(()=>vehicle.DriverID)" />
+        <div class="form-group">
+            <label>CategoryID: </label>
+        </div>
+        <InputSelect @bind-Value="vehicle.CategoryID" class="form-control">
+            <option value="">-- Select CategoryID --</option>
+            @if (VehicleCategorys != null)
             {
-                <option value="@vehiclecategory.Id">@vehiclecategory.Id</option>
+                foreach (var vehiclecategory in VehicleCategorys)
+                {
+                    <option value="@vehiclecategory.Id">@vehiclecategory.Id</option>
+                }
             }
-        }
-    </InputSelect>
-    <ValidationMessage For="@(()=>vehicle.CategoryID)" />
+        </InputSelect>
+        <ValidationMessage For="@(()=>vehicle.CategoryID)" />
+    </fieldset>
+    @if (!Disabled)
+    {
     <button type="submit" class="btn btn-success btn-block">
         @ButtonText
     </button>
+    }
     <BackToList Target="vehicles" />
 </EditForm>
 @code {
+    [Parameter] public bool Disabled { get; set; } = false;
     [Parameter] public Vehicle vehicle { get; set; }
     [Parameter] public string ButtonText { get; set; } = "Save";
     [Parameter] public EventCallback OnValidSubmit { get; set; }

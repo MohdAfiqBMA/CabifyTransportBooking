@@ -2,11 +2,13 @@
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
-
+@inject HttpInterceptorService _interceptor
+@implements IDisposable
+ 
 <h3 class="card-title">VehicleCategory</h3>
 <br />
 
-<a href="/VehicleCategorys/create" class="btn btn-secondary">
+<a href="/vehiclecategorys/create" class="btn btn-secondary">
     <span class="oi oi-plus"></span>
     Create New VehicleCategory
 </a>
@@ -16,15 +18,13 @@
 }
 else
 {
-    <table class="table table-responsive">
+    <table class="table table-responsive" id="vehiclecategorysTable">
         <thead>
             <tr>
-                <th>VehicleCategory ID</th>
-                <th>VehicleCategory Make</th>
-                <th>VehicleCategory Model</th>
-                <th>License Plate Number</th>
-                <th>Driver ID</th>
                 <th>Category ID</th>
+                <th>Name</th>
+                <th>Capacity</th>
+                <th>Price</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -37,10 +37,10 @@ else
                 <td>@VehicleCategory.Capacity</td>
                 <td>@VehicleCategory.Price</td>
                 <td>
-                    <a href="/VehicleCategorys/view/@VehicleCategory.Id" class="btn btn-primary">
+                    <a href="/vehiclecategorys/view/@VehicleCategory.Id" class="btn btn-primary">
                         <span class="oi oi-book"></span>
                     </a>
-                    <a href="/VehicleCategorys/edit/@VehicleCategory.Id" class="btn btn-warning">
+                    <a href="/vehiclecategorys/edit/@VehicleCategory.Id" class="btn btn-warning">
                         <span class="oi oi-pencil"></span>
                     </a>
                     <button class="btn btn-danger" @onclick="@(()=>Delete(VehicleCategory.Id))">
@@ -59,6 +59,7 @@ else
 
     protected async override Task OnInitializedAsync()
     {
+        _interceptor.MonitorEvent();
         VehicleCategorys = await _client.GetFromJsonAsync<List<VehicleCategory>>($"{Endpoints.VehicleCategorysEndpoint}");
 
     }
@@ -72,6 +73,14 @@ else
             await _client.DeleteAsync($"{Endpoints.VehicleCategorysEndpoint}/{VehicleCategoryID}");
             await OnInitializedAsync();
         }
+    }
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("AddDataTable", "#vehiclecategorysTable");
+    }
+    public void Dispose()
+    {
+        js.InvokeVoidAsync("DataTablesDispose", "#vehiclecategorysTable");
     }
 
 }

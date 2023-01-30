@@ -1,9 +1,9 @@
-﻿@page  "/bookings/"
+@page  "/bookings/"
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
+@inject HttpInterceptorService _interceptor
 @implements IDisposable
-
 <h3 class="card-title"> Car Bookings</h3>
 
 <a href="/bookings/create" class="btn btn-secondary">
@@ -17,24 +17,24 @@
     <div class="alert alert-info">Loading Bookings...</div> }
 else
 {
-<table class="table table-responsive" id="bookingsTable">
-    <thead>
-        <tr>
-            <th>Booking Id</th>
-            <th>Pick Up Location</th>
-            <th>Destinaton</th>
-            <th>Payment Method</th>
-            <th>Date</th>
-            <th>Admin ID</th>
-            <th>Driver ID</th>
-            <th>Passenger ID</th>
-            <th>Category ID</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var booking in Bookings)
-        {
+    <table class="table table-responsive" id="bookingsTable">
+        <thead>
+            <tr>
+                <th>Booking Id</th>
+                <th>Pick Up Location</th>
+                <th>Destinaton</th>
+                <th>Payment Method</th>
+                <th>Date</th>
+                <th>Admin ID</th>
+                <th>Driver ID</th>
+                <th>Passenger ID</th>
+                <th>Category ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var booking in Bookings)
+            {
             <tr>
                 <td>@booking.Id</td>
                 <td>@booking.PickUpLocation</td>
@@ -67,6 +67,7 @@ else
 
     protected async override Task OnInitializedAsync()
     {
+        _interceptor.MonitorEvent();
         Bookings = await _client.GetFromJsonAsync<List<Booking>>($"{Endpoints.BookingsEndpoint}");
     }
 
@@ -79,6 +80,14 @@ else
             await _client.DeleteAsync($"{Endpoints.BookingsEndpoint}/{bookingId}");
             await OnInitializedAsync();
         }
+    }
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("AddDataTable", "#bookingsTable");
+    }
+    public void Dispose()
+    {
+        js.InvokeVoidAsync("DataTablesDispose", "#bookingsTable");
     }
 
 }

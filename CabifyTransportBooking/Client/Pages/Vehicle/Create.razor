@@ -4,59 +4,9 @@
 
 <h3 class="card-title">Create New Vehicles</h3>
 <br />
-<EditForm Model="@vehicle" OnValidSubmit="CreateVehicle">
-    <DataAnnotationsValidator />
-    <ValidationSummary />
 
-    <div class="form-group">
-        <label>Vehicle Make: </label>
-    </div>
-    <InputText @bind-Value="@vehicle.VehicleMake" class="form-control" />
-    <ValidationMessage For="@(()=> vehicle.VehicleMake)" />
+<FormComponent ButtonText="Create Vehicle" vehicle="vehicle" OnValidSubmit="@CreateVehicle" />
 
-    <div class="form-group">
-        <label>Vehicle Model: </label>
-    </div>
-    <InputText @bind-Value="@vehicle.VehicleModel" class="form-control" />
-    <ValidationMessage For="@(()=> vehicle.VehicleModel)" />
-
-    <div class="form-group">
-        <label>Vehicle License Plate Number: </label>
-    </div>
-    <InputText @bind-Value="@vehicle.LicensePlateNumber" class="form-control" />
-    <ValidationMessage For="@(()=> vehicle.LicensePlateNumber)" />
-    <div class="form-group">
-        <label>DriverID: </label>
-    </div>
-    <InputSelect @bind-Value="vehicle.DriverID" class="form-control">
-        <option value="">-- Select DriverID --</option>
-        @if (Staffs != null)
-        {
-            foreach (var staff in Staffs)
-            {
-                <option value="@staff.Id">@staff.Id</option>
-            }
-        }
-    </InputSelect>
-    <ValidationMessage For="@(()=>vehicle.DriverID)" />
-    <div class="form-group">
-        <label>CategoryID: </label>
-    </div>
-    <InputSelect @bind-Value="vehicle.CategoryID" class="form-control">
-        <option value="">-- Select CategoryID --</option>
-        @if (VehicleCategorys != null)
-        {
-            foreach (var vehiclecategory in VehicleCategorys)
-            {
-                <option value="@vehiclecategory.Id">@vehiclecategory.Id</option>
-            }
-        }
-    </InputSelect>
-    <ValidationMessage For="@(()=>vehicle.CategoryID)" />
-    <button type="submit" class="btn btn-success btn-block">
-        Create Vehicle
-    </button>
-</EditForm>
 @code {
     Vehicle vehicle = new Vehicle();
 

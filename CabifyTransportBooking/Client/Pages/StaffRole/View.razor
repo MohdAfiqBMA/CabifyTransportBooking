@@ -1,0 +1,19 @@
+﻿@page "/staffroles/view/{id:int}"
+@inject HttpClient _client
+@inject NavigationManager _navManager
+
+<h3>StaffRole View</h3> 
+
+<FormComponent staffrole="staffrole" Disabled ="true" />
+
+@code {
+    [Parameter] public int id { get; set; }
+    StaffRole staffrole = new StaffRole();
+
+    protected async override Task OnParametersSetAsync()
+    {
+        staffrole = await _client.GetFromJsonAsync<StaffRole>($"{Endpoints.StaffRolesEndpoint}/{id}");
+    }
+
+
+}

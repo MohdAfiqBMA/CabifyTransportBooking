@@ -2,7 +2,9 @@
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
-
+@inject HttpInterceptorService _interceptor
+@implements IDisposable
+ 
 <h3 class="card-title">Staff</h3>
 <br />
 
@@ -16,7 +18,7 @@
 }
 else
 {
-    <table class="table table-responsive">
+    <table class="table table-responsive" id="staffsTable">
         <thead>
             <tr>
                 <th>Staff ID</th>
@@ -35,7 +37,8 @@ else
                 <tr>
                     <td>@staff.Id</td>
                     <td>@staff.StaffGender</td>
-                    <td>@staff.StaffName</td>
+                    <td>@staff.StaffFirstName</td>
+                    <td>@staff.StaffLastName</td>
                     <td>@staff.StaffPhoneNumber</td>
                     <td>@staff.StaffEmail</td>
                     <td>@staff.StaffRating</td>
@@ -63,6 +66,7 @@ else
 
     protected async override Task OnInitializedAsync()
     {
+        _interceptor.MonitorEvent();
         Staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
 
     }
@@ -70,12 +74,20 @@ else
     async Task Delete(int staffID)
     {
         var staff = Staffs.First(q => q.Id == staffID);
-        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {staff.StaffName}?");
+        var confirm = await js.InvokeAsync<bool>("confirm", $"Do you want to delete {staff.StaffFirstName}?");
         if (confirm)
         {
             await _client.DeleteAsync($"{Endpoints.StaffsEndpoint}/{staffID}");
             await OnInitializedAsync();
         }
+    }
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("AddDataTable", "#staffsTable");
+    }
+    public void Dispose()
+    {
+        js.InvokeVoidAsync("DataTablesDispose", "#staffsTable");
     }
 
 }

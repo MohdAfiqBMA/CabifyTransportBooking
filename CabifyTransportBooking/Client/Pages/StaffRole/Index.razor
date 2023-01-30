@@ -2,6 +2,8 @@
 @inject HttpClient _client
 @inject IJSRuntime js
 @attribute [Authorize]
+@inject HttpInterceptorService _interceptor
+@implements IDisposable
 
 <h3 class="card-title">StaffRole</h3>
 <br />
@@ -16,7 +18,7 @@
 }
 else
 {
-    <table class="table table-responsive">
+    <table class="table table-responsive" id="staffrolesTable">
         <thead>
             <tr>
                 <th>Role ID</th>
@@ -57,8 +59,8 @@ else
 
     protected async override Task OnInitializedAsync()
     {
+        _interceptor.MonitorEvent();
         StaffRoles = await _client.GetFromJsonAsync<List<StaffRole>>($"{Endpoints.StaffRolesEndpoint}");
-
     }
 
     async Task Delete(int staffroleID)
@@ -70,6 +72,14 @@ else
             await _client.DeleteAsync($"{Endpoints.StaffRolesEndpoint}/{staffroleID}");
             await OnInitializedAsync();
         }
+    }
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("AddDataTable", "#staffrolesTable");
+    }
+    public void Dispose()
+    {
+        js.InvokeVoidAsync("DataTablesDispose", "#staffrolesTable");
     }
 
 }
