@@ -44,10 +44,10 @@ else
                 <td>@passenger.PassengerRating</td>
                 <td>@passenger.PassengerAddress</td>
                 <td>
-                    <a href="/makes/view/@passenger.Id" class="btn btn-primary">
+                    <a href="/passengers/view/@passenger.Id" class="btn btn-primary">
                         <span class="oi oi-book"></span>
                     </a>
-                    <a href="/makes/edit/@passenger.Id" class="btn btn-warning">
+                    <a href="/passengers/edit/@passenger.Id" class="btn btn-warning">
                         <span class="oi oi-pencil"></span>
                     </a>
                     <button class="btn btn-danger" @onclick="@(()=>Delete(passenger.Id))">
