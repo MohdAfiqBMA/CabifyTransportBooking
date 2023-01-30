@@ -24,8 +24,10 @@ else
                 <th>Destinaton</th>
                 <th>Payment Method</th>
                 <th>Date</th>
-                <th>Duration in days</th>
-                <th>Plate Number</th>
+                <th>Admin ID</th>
+                <th>Driver ID</th>
+                <th>Passenger ID</th>
+                <th>Category ID</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -37,8 +39,11 @@ else
                 <td>@booking.PickUpLocation</td>
                 <td>@booking.Destination</td>
                 <td>@booking.PaymentMethod</td>
-                <td>@booking.DateCreated.Date.ToString("dd MMMM yyyy")</td>
-
+                <td>@booking.Date.</td>
+                <td>@booking.AdminID</td>
+                <td>@booking.DriverID</td>
+                <td>@booking.CategoryID</td>
+                <td></td>
                 <td>
                     <a href="/bookings/view/@booking.Id" class="btn btn-primary">
                         <span class="oi oi-book"></span>
