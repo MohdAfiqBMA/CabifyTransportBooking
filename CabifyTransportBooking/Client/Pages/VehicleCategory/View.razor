@@ -1,15 +1,16 @@
-﻿@page "/VehicleCategorys/view/{id:int}"
+﻿@page "/vehiclecategorys/view/{id:int}"
 @inject HttpClient _client
 @inject NavigationManager _navManager
 
 <h3>View</h3>
 
-<FormComponent VehicleCategory="VehicleCategory" Disabled="true" />
+<FormComponent vehiclecategory="vehiclecategory" Disabled="true" />
 
-@code { [Parameter] public int id { get; set; }
-    VehicleCategory VehicleCategory = new VehicleCategory();
+@code { 
+    [Parameter] public int id { get; set; }
+    VehicleCategory vehiclecategory = new VehicleCategory();
 
     protected async override Task OnParametersSetAsync()
     {
-        VehicleCategory = await _client.GetFromJsonAsync<VehicleCategory>($"{Endpoints.VehicleCategorysEndpoint}/{id}");
+        vehiclecategory = await _client.GetFromJsonAsync<VehicleCategory>($"{Endpoints.VehicleCategorysEndpoint}/{id}");
     } }
