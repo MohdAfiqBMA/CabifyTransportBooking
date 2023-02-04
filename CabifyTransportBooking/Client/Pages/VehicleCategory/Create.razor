@@ -23,7 +23,7 @@
     private async Task CreateVehicleCategory()
     {
         await _client.PostAsJsonAsync(Endpoints.VehicleCategorysEndpoint, vehiclecategory);
-        _navManager.NavigateTo("/VehicleCategorys/");
+        _navManager.NavigateTo("/vehiclecategorys/");
     }
 
 }
