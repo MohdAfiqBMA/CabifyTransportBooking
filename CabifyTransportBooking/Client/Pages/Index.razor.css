@@ -140,7 +140,34 @@ a {
 
 
 
+.category-title {
+    display: flex;
+    justify-content: center;
+    font-weight: bolder;
+    padding: 50px;
+    background-color: #e5e7eb;
+}
 
+.category-div {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    padding: 25px;
+    padding-bottom: 100px;
+    background-color: #e5e7eb;
+}
+
+.category p {
+    text-align: center;
+    font-size: 18px;
+    color: grey;
+}
+
+.category img {
+    border-radius: 45px;
+    width: 250px;
+    border: 2px solid black;
+}
 
 .footer {
     display: flex;
