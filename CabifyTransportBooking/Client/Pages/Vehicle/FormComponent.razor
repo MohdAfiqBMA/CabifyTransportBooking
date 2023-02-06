@@ -22,33 +22,33 @@
         <InputText @bind-Value="@vehicle.LicensePlateNumber" class="form-control" />
         <ValidationMessage For="@(()=> vehicle.LicensePlateNumber)" />
         <div class="form-group">
-            <label>DriverID: </label>
+            <label>Driver: </label>
         </div>
-        <InputSelect @bind-Value="vehicle.DriverID" class="form-control">
-            <option value="">-- Select DriverID --</option>
+        <InputSelect @bind-Value="vehicle.VehicleOwnerId" class="form-control">
+            <option value="">-- Select Driver --</option>
             @if (Staffs != null)
             {
                 foreach (var staff in Staffs)
                 {
-                    <option value="@staff.Id">@staff.Id</option>
+                    <option value="@staff.Id">@staff.StaffFirstName - @staff.StaffRole.RoleName</option>
                 }
             }
         </InputSelect>
-        <ValidationMessage For="@(()=>vehicle.DriverID)" />
+        <ValidationMessage For="@(()=>vehicle.VehicleOwnerId)" />
         <div class="form-group">
-            <label>CategoryID: </label>
+            <label>Category: </label>
         </div>
-        <InputSelect @bind-Value="vehicle.CategoryID" class="form-control">
-            <option value="">-- Select CategoryID --</option>
+        <InputSelect @bind-Value="vehicle.VehicleCategoryId" class="form-control">
+            <option value="">-- Select Category --</option>
             @if (VehicleCategorys != null)
             {
                 foreach (var vehiclecategory in VehicleCategorys)
                 {
-                    <option value="@vehiclecategory.Id">@vehiclecategory.Id</option>
+                    <option value="@vehiclecategory.Id">@vehiclecategory.Name</option>
                 }
             }
         </InputSelect>
-        <ValidationMessage For="@(()=>vehicle.CategoryID)" />
+        <ValidationMessage For="@(()=>vehicle.VehicleCategoryId)" />
     </fieldset>
     @if (!Disabled)
     {
