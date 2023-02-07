@@ -47,15 +47,15 @@
         <InputNumber @bind-Value="@staff.StaffRating" class="form-control" />
         <ValidationMessage For="@(()=> staff.StaffRating)" />
         <div class="form-group">
-            <label>Role: </label>
+            <label>RoleID: </label>
         </div>
         <InputSelect @bind-Value="staff.StaffRoleId" class="form-control">
-            <option value="">-- Select Role --</option>
+            <option value="">-- Select RoleID --</option>
             @if (StaffRoles != null)
             {
                 foreach (var staffroles in StaffRoles)
                 {
-                    <option value="@staffroles.Id">@staffroles.RoleName</option>
+                    <option value="@staffroles.Id">@staffroles.Id</option>
                 }
             }
         </InputSelect>
