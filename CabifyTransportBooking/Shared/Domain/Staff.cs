@@ -29,6 +29,6 @@ namespace CabifyTransportBooking.Shared.Domain
         [Required]
         public int StaffRoleId { get; set; }
         public virtual StaffRole StaffRole { get; set; }
-        public virtual List<Booking> Bookings { get; set; }
+      
     }
 }

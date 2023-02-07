@@ -29,7 +29,7 @@ namespace CabifyTransportBooking.Server.Controllers
         //public async Task<ActionResult<IEnumerable<Booking>>> GetBookings()
         public async Task<IActionResult> GetBookings()
         {
-            var bookings = await _unitOfWork.Bookings.GetAll();
+            var bookings = await _unitOfWork.Bookings.GetAll(includes: q => q.Include(x => x.Admin).Include(x => x.Passenger).Include(x => x.Driver).Include(x => x.Category));
             return Ok(bookings);
             //return await _context.Bookings.ToListAsync();
         }
