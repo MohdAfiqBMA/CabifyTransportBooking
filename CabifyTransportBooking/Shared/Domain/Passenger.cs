@@ -30,6 +30,5 @@ namespace CabifyTransportBooking.Shared.Domain
         [Required]
         [StringLength(100, MinimumLength = 5, ErrorMessage = "Address does not meet length requirements")]
         public string  PassengerAddress { get; set; }
-
     }
 }

@@ -27,6 +27,21 @@ namespace CabifyTransportBooking.Server.Configurations.Entities
                     UpdatedBy = "System",
                     DateCreated = DateTime.Now,
                     DateUpdated = DateTime.Now,
+                },
+                new Staff
+                {
+                    Id = 2,
+                    StaffFirstName = "Ellie",
+                    StaffLastName = "Williams",
+                    StaffGender = "Female",
+                    StaffEmail = "ellie123@gmail.com",
+                    StaffPhoneNumber = "98765423",
+                    StaffRating = 4,
+                    StaffRoleId = 1,
+                    CreatedBy = "System",
+                    UpdatedBy = "System",
+                    DateCreated = DateTime.Now,
+                    DateUpdated = DateTime.Now,
                 });
         }
     }

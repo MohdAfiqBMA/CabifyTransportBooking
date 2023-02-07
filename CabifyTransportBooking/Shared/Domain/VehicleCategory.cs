@@ -17,6 +17,5 @@ namespace CabifyTransportBooking.Shared.Domain
         [Required]
         [DataType(DataType.Currency)]
         public double Price { get; set; }
-
     }
 }
