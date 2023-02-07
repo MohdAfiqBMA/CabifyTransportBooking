@@ -22,15 +22,15 @@
         <InputText @bind-Value="@vehicle.LicensePlateNumber" class="form-control" />
         <ValidationMessage For="@(()=> vehicle.LicensePlateNumber)" />
         <div class="form-group">
-            <label>DriverID: </label>
+            <label>Driver: </label>
         </div>
         <InputSelect @bind-Value="vehicle.DriverId" class="form-control">
-            <option value="">-- Select DriverID --</option>
+            <option value="">-- Select Driver --</option>
             @if (Staffs != null)
             {
                 foreach (var staff in Staffs)
                 {
-                    <option value="@staff.Id">@staff.Id</option>
+                    <option value="@staff.Id">@staff.StaffFirstName - @staff.StaffRole.RoleName</option>
                 }
             }
         </InputSelect>
