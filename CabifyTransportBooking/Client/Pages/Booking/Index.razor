@@ -36,15 +36,15 @@ else
             @foreach (var booking in Bookings)
             {
             <tr>
-        <td>@booking.Id</td>
-        <td>@booking.PickUpLocation</td>
-        <td>@booking.Destination</td>
-        <td>@booking.PaymentMethod</td>
-        <td>@booking.Date</td>
-        <td>@booking.Admin.StaffFirstName</td>
-        <td>@booking.Driver.StaffFirstName</td>
-        <td>@booking.Passenger.PassengerFirstName</td>
-        <td>@booking.Category.Name</td>
+                <td>@booking.Id</td>
+                <td>@booking.PickUpLocation</td>
+                <td>@booking.Destination</td>
+                <td>@booking.PaymentMethod</td>
+                <td>@booking.Date</td>
+                <td>@booking.Admin.StaffFirstName</td>
+                <td>@booking.Driver.StaffFirstName</td>
+                <td>@booking.Passenger.PassengerFirstName</td>
+                <td>@booking.Category.Name</td>
                 <td></td>
                 <td>
                     <a href="/bookings/view/@booking.Id" class="btn btn-primary">
