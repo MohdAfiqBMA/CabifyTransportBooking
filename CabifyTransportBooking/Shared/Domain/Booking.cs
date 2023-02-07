@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CabifyTransportBooking.Shared.Domain
 {
@@ -20,7 +21,9 @@ namespace CabifyTransportBooking.Shared.Domain
         [Required]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
+        
         public int? AdminId { get; set; }
+        [NotMapped]
         public virtual Staff Admin { get; set; }
         [Required]
         public int? DriverId { get; set; }
