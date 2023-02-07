@@ -29,18 +29,6 @@ namespace CabifyTransportBooking.Server.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.Entity<Booking>()
-                .HasOne(a => a.Admin)
-                .WithMany(b => b.Admins)
-                .HasForeignKey(c => c.AdminId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
-
-            builder.Entity<Booking>()
-                .HasOne(d => d.Driver)
-                .WithMany(e => e.Drivers)
-                .HasForeignKey(f => f.DriverId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
-
             builder.ApplyConfiguration(new PassengerSeedConfiguration());
             builder.ApplyConfiguration(new StaffRoleSeedConfiguration());
             builder.ApplyConfiguration(new VehicleCategorySeedConfiguration());
