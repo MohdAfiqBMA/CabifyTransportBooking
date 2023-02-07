@@ -25,8 +25,8 @@ else
                 <th>Vehicle Make</th>
                 <th>Vehicle Model</th>
                 <th>License Plate Number</th>
-                <th>Driver ID</th>
-                <th>Category ID</th>
+                <th>Driver</th>
+                <th>Category</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -38,7 +38,7 @@ else
                 <td>@vehicle.VehicleMake</td>
                 <td>@vehicle.VehicleModel</td>
                 <td>@vehicle.LicensePlateNumber</td>
-                <td>@vehicle.DriverId</td>
+                <td>@vehicle.Driver.StaffFirstName</td>
                 <td>@vehicle.VehicleCategory.Name</td>
                 <td>
                     <a href="/vehicles/view/@vehicle.Id" class="btn btn-primary">

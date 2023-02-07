@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CabifyTransportBooking.Server.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230207054641_newDb")]
+    [Migration("20230207113124_newDb")]
     partial class newDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -214,8 +214,8 @@ namespace CabifyTransportBooking.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 7, 13, 46, 40, 693, DateTimeKind.Local).AddTicks(3313),
-                            DateUpdated = new DateTime(2023, 2, 7, 13, 46, 40, 694, DateTimeKind.Local).AddTicks(198),
+                            DateCreated = new DateTime(2023, 2, 7, 19, 31, 24, 99, DateTimeKind.Local).AddTicks(1614),
+                            DateUpdated = new DateTime(2023, 2, 7, 19, 31, 24, 100, DateTimeKind.Local).AddTicks(4127),
                             PassengerAddress = "Pasir Ris 51",
                             PassengerEmail = "benyeo@gmail.com",
                             PassengerFirstName = "Ben",
@@ -285,8 +285,8 @@ namespace CabifyTransportBooking.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 7, 13, 46, 40, 695, DateTimeKind.Local).AddTicks(8023),
-                            DateUpdated = new DateTime(2023, 2, 7, 13, 46, 40, 695, DateTimeKind.Local).AddTicks(8028),
+                            DateCreated = new DateTime(2023, 2, 7, 19, 31, 24, 102, DateTimeKind.Local).AddTicks(8373),
+                            DateUpdated = new DateTime(2023, 2, 7, 19, 31, 24, 102, DateTimeKind.Local).AddTicks(8381),
                             StaffEmail = "john123@gmail.com",
                             StaffFirstName = "Jon",
                             StaffGender = "Male",
@@ -300,8 +300,8 @@ namespace CabifyTransportBooking.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 7, 13, 46, 40, 695, DateTimeKind.Local).AddTicks(8032),
-                            DateUpdated = new DateTime(2023, 2, 7, 13, 46, 40, 695, DateTimeKind.Local).AddTicks(8032),
+                            DateCreated = new DateTime(2023, 2, 7, 19, 31, 24, 102, DateTimeKind.Local).AddTicks(8386),
+                            DateUpdated = new DateTime(2023, 2, 7, 19, 31, 24, 102, DateTimeKind.Local).AddTicks(8387),
                             StaffEmail = "ellie123@gmail.com",
                             StaffFirstName = "Ellie",
                             StaffGender = "Female",
@@ -353,8 +353,8 @@ namespace CabifyTransportBooking.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 7, 13, 46, 40, 695, DateTimeKind.Local).AddTicks(1131),
-                            DateUpdated = new DateTime(2023, 2, 7, 13, 46, 40, 695, DateTimeKind.Local).AddTicks(1138),
+                            DateCreated = new DateTime(2023, 2, 7, 19, 31, 24, 101, DateTimeKind.Local).AddTicks(9103),
+                            DateUpdated = new DateTime(2023, 2, 7, 19, 31, 24, 101, DateTimeKind.Local).AddTicks(9113),
                             RoleDescription = "Support employees by assigning tasks",
                             RoleName = "Admin",
                             RoleType = "Admin",
@@ -364,8 +364,8 @@ namespace CabifyTransportBooking.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 7, 13, 46, 40, 695, DateTimeKind.Local).AddTicks(1142),
-                            DateUpdated = new DateTime(2023, 2, 7, 13, 46, 40, 695, DateTimeKind.Local).AddTicks(1143),
+                            DateCreated = new DateTime(2023, 2, 7, 19, 31, 24, 101, DateTimeKind.Local).AddTicks(9117),
+                            DateUpdated = new DateTime(2023, 2, 7, 19, 31, 24, 101, DateTimeKind.Local).AddTicks(9118),
                             RoleDescription = "Drive passengers to the intended destination",
                             RoleName = "Driver",
                             RoleType = "Driver",
@@ -460,8 +460,8 @@ namespace CabifyTransportBooking.Server.Migrations
                             Id = 1,
                             Capacity = 4,
                             CreatedBy = "System",
-                            DateCreated = new DateTime(2023, 2, 7, 13, 46, 40, 695, DateTimeKind.Local).AddTicks(3964),
-                            DateUpdated = new DateTime(2023, 2, 7, 13, 46, 40, 695, DateTimeKind.Local).AddTicks(3969),
+                            DateCreated = new DateTime(2023, 2, 7, 19, 31, 24, 102, DateTimeKind.Local).AddTicks(2849),
+                            DateUpdated = new DateTime(2023, 2, 7, 19, 31, 24, 102, DateTimeKind.Local).AddTicks(2856),
                             Name = "Cabify Standard",
                             Price = 12.0,
                             UpdatedBy = "System"
@@ -709,7 +709,7 @@ namespace CabifyTransportBooking.Server.Migrations
             modelBuilder.Entity("CabifyTransportBooking.Shared.Domain.Booking", b =>
                 {
                     b.HasOne("CabifyTransportBooking.Shared.Domain.Staff", "Admin")
-                        .WithMany("Admins")
+                        .WithMany()
                         .HasForeignKey("AdminId");
 
                     b.HasOne("CabifyTransportBooking.Shared.Domain.VehicleCategory", "Category")
@@ -719,8 +719,9 @@ namespace CabifyTransportBooking.Server.Migrations
                         .IsRequired();
 
                     b.HasOne("CabifyTransportBooking.Shared.Domain.Staff", "Driver")
-                        .WithMany("Drivers")
+                        .WithMany()
                         .HasForeignKey("DriverId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("CabifyTransportBooking.Shared.Domain.Passenger", "Passenger")
@@ -817,13 +818,6 @@ namespace CabifyTransportBooking.Server.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("CabifyTransportBooking.Shared.Domain.Staff", b =>
-                {
-                    b.Navigation("Admins");
-
-                    b.Navigation("Drivers");
                 });
 #pragma warning restore 612, 618
         }
