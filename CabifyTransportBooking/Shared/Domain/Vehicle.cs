@@ -17,10 +17,10 @@ namespace CabifyTransportBooking.Shared.Domain
         [RegularExpression(@"^[A-Za-z]{3}\d{4}[A-Za-z]", ErrorMessage = "License Plate Number doesnot meet requirements")]
         public string LicensePlateNumber { get; set; }
         [Required]
-        public int? DriverID { get; set; }
-        public virtual Staff Staff { get; set; }
+        public int? DriverId { get; set; }
+        public virtual Staff Driver { get; set; }
         [Required]
-        public int CategoryID { get; set; }
+        public int VehicleCategoryId { get; set; }
         public virtual VehicleCategory VehicleCategory { get; set; }
     }
 }

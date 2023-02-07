@@ -34,43 +34,43 @@
         </div>
     </div>
     <div class="form-group">
-        <label>Admin ID: </label>
+        <label>Admin: </label>
     </div>
     <InputSelect @bind-Value="booking.AdminId" class="form-control">
-        <option value="">-- Select AdminId --</option>
+        <option value="">-- Select Admin --</option>
         @if (Staffs != null)
         {
             foreach (var staffs in Staffs)
             {
-                <option value="@staffs.Id">@staffs.Id</option>
+    <option value="@staffs.Id">@staffs.StaffFirstName - @staffs.StaffRole.RoleName</option>
             }
         }
     </InputSelect>
     <ValidationMessage For="@(()=>booking.AdminId)" />
     <div class="form-group">
-        <label>Driver ID: </label>
+        <label>Driver: </label>
     </div>
     <InputSelect @bind-Value="booking.DriverId" class="form-control">
-        <option value="">-- Select DriverId --</option>
+        <option value="">-- Select Driver --</option>
         @if (Staffs != null)
         {
             foreach (var staffs in Staffs)
             {
-                <option value="@staffs.Id">@staffs.Id</option>
+                <option value="@staffs.Id">@staffs.StaffFirstName - @staffs.StaffRole.RoleName</option>
             }
         }
     </InputSelect>
     <ValidationMessage For="@(()=>booking.DriverId)" />
     <div class="form-group">
-        <label>Passenger ID: </label>
+        <label>Passenger: </label>
     </div>
     <InputSelect @bind-Value="booking.PassengerId" class="form-control">
-        <option value="">-- Select PassengerId --</option>
+        <option value="">-- Select Passenger --</option>
         @if (Passengers != null)
         {
             foreach (var passengers in Passengers)
             {
-                <option value="@passengers.Id">@passengers.Id</option>
+                <option value="@passengers.Id">@passengers.PassengerFirstName</option>
             }
         }
     </InputSelect>
@@ -84,7 +84,7 @@
         {
             foreach (var vehiclecategorys in VehicleCategorys)
             {
-                <option value="@vehiclecategorys.Id">@vehiclecategorys.Id</option>
+                <option value="@vehiclecategorys.Id">@vehiclecategorys.Name</option>
             }
         }
     </InputSelect>

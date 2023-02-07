@@ -6,15 +6,20 @@
 
 <FormComponent ButtonText="Create Booking" booking="booking" OnValidSubmit="@CreateBooking" />
 
-@code { Booking booking = new Booking() { Date = DateTime.Now };
+@code { 
+    Booking booking = new Booking() { Date = DateTime.Now };
 
-    private IList<Vehicle> Vehicles;
-    private IList<Passenger> Passenger;
+    private IList<Passenger> Passengers;
+    private IList<Staff> Staffs;
+    private IList<VehicleCategory> VehicleCategorys;
+
 
     protected async override Task OnInitializedAsync()
     {
-        Vehicles = await _client.GetFromJsonAsync<List<Vehicle>>($"{Endpoints.VehiclesEndpoint}");
-        Passenger = await _client.GetFromJsonAsync<List<Passenger>>($"{Endpoints.PassengersEndpoint}");
+        Passengers = await _client.GetFromJsonAsync<List<Passenger>>($"{Endpoints.PassengersEndpoint}");
+        Staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
+        VehicleCategorys = await _client.GetFromJsonAsync<List<VehicleCategory>>($"{Endpoints.VehicleCategorysEndpoint}");
+
     }
 
     private async Task CreateBooking()
