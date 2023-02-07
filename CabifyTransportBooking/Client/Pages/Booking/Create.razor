@@ -9,18 +9,12 @@
 @code { Booking booking = new Booking() { Date = DateTime.Now };
 
     private IList<Vehicle> Vehicles;
-    private IList<Passenger> Passengers;
-    private IList<Staff> Staffs;
-    private IList<VehicleCategory> VehicleCategorys;
-
+    private IList<Passenger> Passenger;
 
     protected async override Task OnInitializedAsync()
     {
         Vehicles = await _client.GetFromJsonAsync<List<Vehicle>>($"{Endpoints.VehiclesEndpoint}");
-        Passengers = await _client.GetFromJsonAsync<List<Passenger>>($"{Endpoints.PassengersEndpoint}");
-        Staffs = await _client.GetFromJsonAsync<List<Staff>>($"{Endpoints.StaffsEndpoint}");
-        VehicleCategorys = await _client.GetFromJsonAsync<List<VehicleCategory>>($"{Endpoints.VehicleCategorysEndpoint}");
-
+        Passenger = await _client.GetFromJsonAsync<List<Passenger>>($"{Endpoints.PassengersEndpoint}");
     }
 
     private async Task CreateBooking()
