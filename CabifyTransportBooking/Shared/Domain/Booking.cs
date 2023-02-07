@@ -32,6 +32,5 @@ namespace CabifyTransportBooking.Shared.Domain
         public int? CategoryId { get; set; }
         public virtual VehicleCategory Category { get; set; }
 
-
     }
 }

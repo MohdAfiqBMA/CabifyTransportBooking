@@ -24,7 +24,7 @@
         <div class="form-group">
             <label>DriverID: </label>
         </div>
-        <InputSelect @bind-Value="vehicle.DriverID" class="form-control">
+        <InputSelect @bind-Value="vehicle.DriverId" class="form-control">
             <option value="">-- Select DriverID --</option>
             @if (Staffs != null)
             {
@@ -34,21 +34,21 @@
                 }
             }
         </InputSelect>
-        <ValidationMessage For="@(()=>vehicle.DriverID)" />
+        <ValidationMessage For="@(()=>vehicle.DriverId)" />
         <div class="form-group">
-            <label>CategoryID: </label>
+            <label>Category: </label>
         </div>
-        <InputSelect @bind-Value="vehicle.CategoryID" class="form-control">
-            <option value="">-- Select CategoryID --</option>
+        <InputSelect @bind-Value="vehicle.VehicleCategoryId" class="form-control">
+            <option value="">-- Select Category --</option>
             @if (VehicleCategorys != null)
             {
                 foreach (var vehiclecategory in VehicleCategorys)
                 {
-                    <option value="@vehiclecategory.Id">@vehiclecategory.Id</option>
+                    <option value="@vehiclecategory.Id">@vehiclecategory.Name</option>
                 }
             }
         </InputSelect>
-        <ValidationMessage For="@(()=>vehicle.CategoryID)" />
+        <ValidationMessage For="@(()=>vehicle.VehicleCategoryId)" />
     </fieldset>
     @if (!Disabled)
     {
